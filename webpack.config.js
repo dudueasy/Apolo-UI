@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
@@ -24,4 +25,16 @@ module.exports = {
 
     ],
   },
-};
+  plugins: [
+    // new HtmlWebpackPlugin({title: 'Custom template', template: './index.html'}),
+
+    new HtmlWebpackPlugin({title: 'ApoloUI', template: 'index.html'}),
+  ],
+  devServer: {
+    host: '0.0.0.0',
+    port: '8888',
+    contentBase: './dist/lib',
+    hot: true,
+  },
+}
+;
