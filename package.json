@@ -4,7 +4,8 @@
   "description": "A UI Components Library Built with React & TypeScript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf dist && webpack --mode production"
   },
   "keywords": [
     "React",
@@ -12,5 +13,18 @@
     "UI"
   ],
   "author": "Apolo",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.4.5",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
+  },
+  "dependencies": {
+    "@types/react": "^16.8.14",
+    "@types/react-dom": "^16.8.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
 }
