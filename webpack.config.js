@@ -28,7 +28,7 @@ module.exports = {
   plugins: [
     // new HtmlWebpackPlugin({title: 'Custom template', template: './index.html'}),
 
-    new HtmlWebpackPlugin({title: 'ApoloUI', template: 'index.html'}),
+    new HtmlWebpackPlugin({title: 'ApoloUI', template: 'index.html', favicon: 'favicon.ico'}),
   ],
   devServer: {
     host: '0.0.0.0',
