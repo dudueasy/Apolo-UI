@@ -4,9 +4,9 @@
   "description": "A UI Components Library Built with React & TypeScript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf dist/* && webpack --mode production",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "analyze": "webpack --profile --json > stats.json  && webpack-bundle-analyzer stats.json dist/lib"
   },
   "keywords": [
     "React",
@@ -21,12 +21,14 @@
     "source-map-loader": "^0.2.4",
     "typescript": "^3.4.5",
     "webpack": "^4.30.0",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.1",
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
     "@types/react": "^16.8.14",
     "@types/react-dom": "^16.8.4",
+    "@types/webpack-env": "^1.13.9",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }

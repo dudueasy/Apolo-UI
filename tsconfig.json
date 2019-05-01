@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "baseUrl": ".",
+    "module": "es6",
     "lib": [
       "es2015",
       "dom"
@@ -28,5 +29,8 @@
     "*.js",
     "scripts",
     "jest"
-  ]
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "silent": true
+  }
 }
