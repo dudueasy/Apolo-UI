@@ -4,9 +4,9 @@
   "description": "A UI Components Library Built with React & TypeScript",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist/* && webpack --mode production",
-    "start": "webpack-dev-server",
-    "analyze": "webpack --profile --json > stats.json  && webpack-bundle-analyzer stats.json dist/lib"
+    "build": "rm -rf dist/* && webpack --config webpack.config.prod.js",
+    "start": "webpack-dev-server --config webpack.config.dev.js",
+    "analyze": "webpack  --config webpack.config.prod.js --profile --json > stats.json  && webpack-bundle-analyzer stats.json dist/lib"
   },
   "keywords": [
     "React",
