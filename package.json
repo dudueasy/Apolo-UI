@@ -2,7 +2,8 @@
   "name": "apolo-ui",
   "version": "1.0.0",
   "description": "A UI Components Library Built with React & TypeScript",
-  "main": "index.js",
+  "main": "dist/lib/apoloUI.js",
+  "types": "dist/lib/index",
   "scripts": {
     "build": "rm -rf dist/* && webpack --config webpack.config.prod.js",
     "start": "webpack-dev-server --config webpack.config.dev.js",
@@ -23,12 +24,12 @@
     "webpack": "^4.30.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.1",
-    "webpack-dev-server": "^3.3.1"
-  },
-  "dependencies": {
+    "webpack-dev-server": "^3.3.1",
     "@types/react": "^16.8.14",
     "@types/react-dom": "^16.8.4",
-    "@types/webpack-env": "^1.13.9",
+    "@types/webpack-env": "^1.13.9"
+  },
+  "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }
