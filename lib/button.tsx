@@ -5,6 +5,3 @@ const Button: React.FunctionComponent = function () {
 };
 
 export default Button;
-
-
-
