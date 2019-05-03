@@ -1,5 +1,13 @@
 # Apolo-UI: Redefined React UI Components
  一个 React UI 组件库.
+ 
+# 分支 
+### master
+[主要分支](https://github.com/dudueasy/Apolo-UI ), 集成所有开发记录和配置
+
+### jest-intergration
+[工程架构配置](https://github.com/dudueasy/Apolo-UI/tree/jest-intergration): 完成了 TypeScript & React & Jest 单元测试的工程架构
+
 
 # 文件结构
 ### 源文件
@@ -14,14 +22,21 @@ dist/lib/
 ### 测试用例
 \__tests\__/
 
+
 # 工程架构:
 Webpack + React + TypeScript + Jest & Enzyme 单元测试
 
-### webpack 打包配置
-通过 awesome-typescript-loader 编译并打包 tsx 文件
+# 文件结构
+### 源文件
+lib/*
 
-### Jest 单元测试配置
-通过 ts-jest 编译测试用例文件
+### html 模板
+index.html
 
-通过 enzyme 引入 React 测试环境
 
+
+
+# 工程架构:
+Webpack + React + TypeScript + Jest & Enzyme 单元测试
+
+详情请参考分支: [工程架构配置](https://github.com/dudueasy/Apolo-UI/tree/jest-intergration)
