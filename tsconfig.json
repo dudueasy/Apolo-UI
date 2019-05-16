@@ -16,7 +16,7 @@
     "noImplicitThis": true,
     "removeComments": true,
     "jsx": "react",
-    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "declaration": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,

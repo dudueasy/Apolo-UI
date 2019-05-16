@@ -5,10 +5,12 @@ module.exports = {
   testMatch: [
     '<rootDir>/**/__tests__/**/*.unit.(js|jsx|ts|tsx)',
   ],
-  transform: {
-    // '^.+\\.jsx?$': 'babel-jest',  // 启用此项需要安装 babel 依赖.
-    '^.+\\.tsx?$': 'ts-jest',
-  },
+  preset: 'ts-jest'
+  ,
+  // transform: {
+  //   // '^.+\\.jsx?$': 'babel-jest',  // 启用此项需要安装 babel 依赖.
+  //   '^.+\\.(t|j)sx?$': 'ts-jest',
+  // },
   setupFilesAfterEnv: ['jest-enzyme'],   // 添加 jest 测试工具模块
   testEnvironment: 'enzyme',            // 定义测试时的代码环境
   testEnvironmentOptions: {
