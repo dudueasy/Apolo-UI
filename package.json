@@ -30,6 +30,7 @@
     "jest-environment-enzyme": "^7.0.2",
     "jest-enzyme": "^7.0.2",
     "source-map-loader": "^0.2.4",
+    "svg-sprite-loader": "^4.1.6",
     "thread-loader": "^2.1.2",
     "ts-jest": "^24.0.2",
     "typescript": "^3.4.5",

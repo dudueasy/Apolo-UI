@@ -14,13 +14,13 @@ module.exports = {
     globalObject: 'this',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.svg'],
   },
   module: {
     rules: [
       // use ATL loader for .ts & .tsx files
       {test: /\.tsx?$/, loader: 'awesome-typescript-loader'},
-
+      {test:/\.svg$/, loader: 'svg-sprite-loader'}
     ],
   },
 }
