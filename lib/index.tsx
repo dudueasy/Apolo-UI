@@ -8,10 +8,14 @@ if (module.hot) {
     module.hot.accept();
 }
 
+const onClick = (e: React.MouseEvent<SVGElement>) => {
+    console.log(`Icon is clicked`);
+};
+
 ReactDOM.render(
     <div>
-        <Icon name='qq'/>
-        <Icon name='alipay'/>
-        <Icon name='wechat'/>
+        <Icon name='qq' onClick={onClick}/>
+        <Icon name='alipay' onClick={onClick}/>
+        <Icon name='wechat' onClick={onClick}/>
     </div>
     , document.querySelector('#app'));
