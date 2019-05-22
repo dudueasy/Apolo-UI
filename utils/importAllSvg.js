@@ -19,7 +19,7 @@ function importAllSvg() {
     });
 
 
-  fn(require.context('../icon_svg/', false, /\.svg$/));
+  fn(require.context('../lib/icon/icon_svg/', false, /\.svg$/));
   // fn(require.context(path, false, filenameRegex));
 }
 
