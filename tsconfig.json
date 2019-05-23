@@ -21,7 +21,8 @@
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "allowJs": true
   },
   "exclude": [
     "node_modules",
