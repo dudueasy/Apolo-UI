@@ -1,21 +1,28 @@
 import React from 'react';
 
 // 引入 icons 目录下的所有 svg
-import '../../utils/importAllSvg';
+import '../utils/importAllSvg';
+
+// 引入样式文件
 import './icon.scss';
 
+import combineClassNames from '../utils/combineClassNames';
 
-interface Props {
+interface Props extends React.SVGAttributes<SVGElement> {
     name: string,
-    onClick?: React.MouseEventHandler<SVGElement>
 }
 
-const Icon: React.FC<Props> = (props) => {
+const Icon: React.FC<Props> = (
+    {
+        className,
+        name,
+        ...restProps
+    }) => {
     return (
-        <svg className={'apoloUI-icon'}
-             onClick={props.onClick}
+        <svg className={combineClassNames('apoloUI-icon', className)}
+             {...restProps}
         >
-            <use xlinkHref={`#${props.name}`}/>
+            <use xlinkHref={`#${name}`}/>
         </svg>
     );
 };

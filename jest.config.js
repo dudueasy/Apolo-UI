@@ -16,5 +16,9 @@ module.exports = {
   testEnvironmentOptions: {
     enzymeAdapter: 'react16',            // 定义 enzyme 环境版本为 react16 (默认值)
   },
-  verbose:true
+  verbose:true,
+  moduleNameMapper:{
+    "\\.(jpg|jpeg|png|gif|svg)$":"<rootDir>/tests/mocks/fileMock.js",
+    "\\.s?[ac]ss$":"<rootDir>/tests/mocks/objectMock.js"
+  }
 };

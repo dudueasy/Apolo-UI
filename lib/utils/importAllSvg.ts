@@ -21,6 +21,12 @@ function importAllSvg(): void {
     // fn(require.context(path, false, filenameRegex));
 }
 
-importAllSvg();
+// 只有 webpack 编译时以下代码才能执行成功, 其他环境下会报错.
+// 所以需要使用 try catch 语句
+try {
+    importAllSvg();
+} catch (error) {
+
+}
 
 
