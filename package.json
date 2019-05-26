@@ -8,12 +8,14 @@
     "build": "rm -rf dist/* && webpack --config webpack.config.prod.js",
     "start": "webpack-dev-server --config webpack.config.dev.js",
     "analyze": "webpack  --config webpack.config.prod.js --profile --json > stats.json  && webpack-bundle-analyzer stats.json dist/lib",
-    "test": "jest --no-cache --watchAll"
+    "test": "jest --no-cache --watchAll",
+    "test:c": "jest --config=jest.config.coverage.js --watchAll"
   },
   "keywords": [
     "React",
     "TypeScript",
-    "UI"
+    "UI",
+    "Unit Testing"
   ],
   "author": "Apolo",
   "license": "MIT",
