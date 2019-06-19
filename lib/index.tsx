@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Icon from './icon/icon';
-import ScrollExample from './scroll/scroll.example';
 
 // hello
 if (module.hot) {

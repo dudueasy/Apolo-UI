@@ -4,3 +4,4 @@ dist
 stats.json
 yarn-error.log
 .vscode
+coverage

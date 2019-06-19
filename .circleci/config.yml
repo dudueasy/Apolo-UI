@@ -1,15 +1,66 @@
 # Use the latest 2.1 version of CircleCI pipeline processing engine, see https://circleci.com/docs/2.0/configuration-reference/
 version: 2.1
+executors:
+  node-executor:
+    docker:
+      - image: circleci/node:10-jessie
 
-# Use a package of configuration called an orb, see https://circleci.com/docs/2.0/orb-intro/
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.3.1
+jobs:
+  preparation:
+    executor: node-executor
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependencies-{{ checksum "package.json" }}
 
-# Orchestrate or schedule a set of jobs, see https://circleci.com/docs/2.0/workflows/
+      - run: yarn
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-{{ checksum "package.json" }}
+
+      - persist_to_workspace:
+          root: "."
+          paths:
+            - "node_modules"
+
+  build:
+    executor: node-executor
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+
+      - restore_cache:
+          key: dependencies-{{ checksum "package.json" }}
+
+      - run: yarn build
+
+  test:
+    executor: node-executor
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+
+      - restore_cache:
+          key: dependencies-{{ checksum "package.json" }}
+
+      - run: yarn test:c
+      - store_test_results:
+          path: coverage
+
 workflows:
-  # Name the workflow "Welcome"
-  Welcome:
-    # Run the welcome/run job in its own container
+  my-workflow:
     jobs:
-      - welcome/run
+      - preparation
+      - build:
+          requires:
+            - preparation
+
+      - test:
+          requires:
+            - preparation
+
+
+

@@ -9,7 +9,7 @@
     "start": "webpack-dev-server --config webpack.config.dev.js",
     "analyze": "webpack  --config webpack.config.prod.js --profile --json > stats.json  && webpack-bundle-analyzer stats.json dist/lib",
     "test": "jest --no-cache --watchAll",
-    "test:c": "jest --config=jest.config.coverage.js --watchAll"
+    "test:c": "jest --config=jest.config.coverage.js"
   },
   "keywords": [
     "React",
@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@types/react-test-renderer": "^16.8.1",
+    "jest": "^24.8.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
