@@ -17,6 +17,7 @@ const productionConfig = {
         root: 'ReactDOM',
       },
     },
+  devtool:'none'
 };
 
 module.exports = Object.assign({},baseConfig, productionConfig);
