@@ -12,6 +12,8 @@ interface Props extends React.SVGAttributes<SVGElement> {
     name: string,
 }
 
+// Icon 组件接收 name 参数, 作为 icon 的标识
+// Icon 组件接收 className 参数, 作为样式类名.
 const Icon: React.FC<Props> = (
     {
         className,
