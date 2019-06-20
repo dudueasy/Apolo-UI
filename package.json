@@ -1,9 +1,10 @@
 {
-  "name": "apolo-ui",
-  "version": "1.0.0",
+  "name": "apolo-ui-test",
+  "version": "0.0.1",
   "description": "A UI Components Library Built with React & TypeScript",
   "main": "dist/lib/apoloUI.js",
   "types": "dist/lib/index",
+  "files": ["dist"],
   "scripts": {
     "build": "rm -rf dist/* && webpack --config webpack.config.prod.js",
     "start": "webpack-dev-server --config webpack.config.dev.js",

@@ -17,12 +17,11 @@
     "removeComments": true,
     "jsx": "react",
     "esModuleInterop": true,
-    "declaration": false,
+    "declaration": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "noEmitOnError": true,
-    "allowJs": true
+    "noEmitOnError": true
   },
   "exclude": [
     "node_modules",
