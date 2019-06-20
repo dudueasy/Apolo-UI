@@ -4,6 +4,7 @@ module.exports = Object.assign(
   {},
   baseConfig,
   {
+    reporters: [['jest-junit', {output: './test-results/jest/results.xml'}]],
     collectCoverage: true,
     coveragePathIgnorePatterns: [
       '<rootDir>/lib/utils/importAllSvg.ts',
