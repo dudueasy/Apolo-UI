@@ -80,9 +80,9 @@ workflows:
 
       - publish:
           requires:
-                - build
+            - build
           filters:
             tags:
-              only: /^v[0-9]{1}.*/
+              only: /^v.*$/
             branches:
-              ignore: /.*/
+              ignore: /^.*$/
