@@ -1,12 +1,15 @@
 {
   "name": "apolo-ui-test",
-  "version": "0.0.3",
+  "version": "0.1.1",
   "description": "A UI Components Library Built with React & TypeScript",
   "main": "dist/lib/apoloUI.js",
   "types": "dist/lib/index",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "rm -rf dist/* && webpack --config webpack.config.prod.js",
+    "generate-types": "tsc -d --emitDeclarationOnly --allowJs false",
+    "build": "rm -rf dist/* && webpack --config webpack.config.prod.js && yarn generate-types",
     "start": "webpack-dev-server --config webpack.config.dev.js",
     "analyze": "webpack  --config webpack.config.prod.js --profile --json > stats.json  && webpack-bundle-analyzer stats.json dist/lib",
     "test": "jest --no-cache --watchAll",
