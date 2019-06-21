@@ -72,12 +72,9 @@ workflows:
       - build:
           requires:
             - test
-
       - test:
           requires:
             - preparation
-
-
       - publish:
           requires:
             - build
