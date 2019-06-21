@@ -8,6 +8,22 @@
 ### jest-intergration
 [工程架构配置](https://github.com/dudueasy/Apolo-UI/tree/jest-intergration): 完成了 TypeScript & React & Jest 单元测试的工程架构
 
+# 常用命令
+### 编译项目
+~~~
+yarn build
+~~~
+
+### 执行测试
+~~~
+yarn test
+~~~
+
+### 自动部署
+在项目根目录下执行以下命令 (需要确保当前用户对 deploy.sh 有可执行权限): 
+~~~
+./deploy.sh
+~~~
 
 # 文件结构
 ### 源文件
