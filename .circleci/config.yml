@@ -32,13 +32,6 @@ jobs:
           at: .
 
       - run: yarn build
-      - persist_to_workspace:
-          root: "."
-          paths:
-            - "dist"
-            - package.json
-            - LICENSE
-            - README.md
 
   test:
     executor: node-executor
@@ -56,10 +49,9 @@ jobs:
     executor: node-executor
     steps:
       - checkout
-      - attach_workspace:
-          at: .
+      - run: yarn
+      - run: yarn build
       - run: npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
-
       - run: npm publish
 
 
@@ -75,8 +67,6 @@ workflows:
           requires:
             - preparation
       - publish:
-          requires:
-            - build
           filters:
             tags:
               only: /^v.*$/
