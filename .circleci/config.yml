@@ -77,7 +77,6 @@ workflows:
           requires:
             - preparation
 
-
       - publish:
           requires:
             - build
