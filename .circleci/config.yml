@@ -56,34 +56,37 @@ jobs:
     executor: node-executor
     steps:
       - checkout
-      - attach_workspace:
-          at: .
+      - run: yarn
+      - run: yarn build
       - run: npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
-
       - run: npm publish
 
 
 
 
 workflows:
+  version: 2.1
   my-workflow:
     jobs:
-      - preparation
+      - preparation:
+          filters:
+            branches:
+              only: /master/
+
       - build:
+          filters:
+            branches:
+              only: /master/
           requires:
             - test
-
       - test:
+          filters:
+            branches:
+              only: /master/
           requires:
             - preparation
 
-
       - publish:
-          requires:
-            - build
-
           filters:
             branches:
-              ignore: /^.*$/
-            tags:
-              only: /^v.*$/
+              only: /deploy.*/
