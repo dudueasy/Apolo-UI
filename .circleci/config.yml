@@ -70,3 +70,5 @@ workflows:
           filters:
             tags:
               only: /^v.*$/
+            branches:
+              only: /^shitty$/
