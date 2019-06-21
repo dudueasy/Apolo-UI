@@ -83,6 +83,6 @@ workflows:
                 - build
           filters:
             tags:
-              only: /^v.*/
+              only: /^v[0-9]{1}.*/
             branches:
               ignore: /.*/
