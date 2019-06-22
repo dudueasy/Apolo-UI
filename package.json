@@ -1,6 +1,6 @@
 {
   "name": "apolo-ui-test",
-  "version": "0.3.22",
+  "version": "0.3.23",
   "description": "A UI Components Library Built with React & TypeScript",
   "main": "dist/lib/apoloUI.js",
   "types": "dist/lib/index",
