@@ -1,6 +1,6 @@
 {
   "name": "apolo-ui-test",
-  "version": "0.3.20",
+  "version": "0.3.21",
   "description": "A UI Components Library Built with React & TypeScript",
   "main": "dist/lib/apoloUI.js",
   "types": "dist/lib/index",
@@ -13,7 +13,8 @@
     "start": "webpack-dev-server --config webpack.config.dev.js",
     "analyze": "webpack  --config webpack.config.prod.js --profile --json > stats.json  && webpack-bundle-analyzer stats.json dist/lib",
     "test": "jest --no-cache --watchAll",
-    "test:ci": "jest --config=jest.config.ci.js"
+    "test:ci": "jest --config=jest.config.ci.js",
+    "deploy": "./deploy.sh patch"
   },
   "keywords": [
     "React",

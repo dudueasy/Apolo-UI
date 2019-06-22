@@ -1,4 +1,7 @@
 # Apolo-UI: Redefined React UI Components
+[![CircleCI](https://circleci.com/gh/dudueasy/Apolo-UI/tree/master.svg?style=svg)](https://circleci.com/gh/dudueasy/Apolo-UI/tree/master)
+[![npm version](https://badge.fury.io/js/apolo-ui-test.svg)](https://badge.fury.io/js/apolo-ui-test)
+ 
  一个 React UI 组件库.
  
 # 分支 
@@ -7,6 +10,9 @@
 
 ### jest-intergration
 [工程架构配置](https://github.com/dudueasy/Apolo-UI/tree/jest-intergration): 完成了 TypeScript & React & Jest 单元测试的工程架构
+
+### deploy
+[发布分支](https://github.com/dudueasy/Apolo-UI/tree/deploy): 用于发布的分支
 
 # 常用命令
 ### 编译项目
