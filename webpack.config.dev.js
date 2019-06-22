@@ -1,8 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const baseConfig = require('./webpack.config.base');
+const path = require('path')
 
 const devConfig = {
   mode: 'development',
+  entry: {
+    apoloUI: path.join(__dirname, './example.tsx'),
+  },
   plugins: [
     // new HtmlWebpackPlugin({title: 'Custom template', template: './index.html'}),
 

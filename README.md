@@ -1,8 +1,8 @@
-# Apolo-UI: Redefined React UI Components
+# Apolo-UI: Redefined React UI Components 
 [![CircleCI](https://circleci.com/gh/dudueasy/Apolo-UI/tree/master.svg?style=svg)](https://circleci.com/gh/dudueasy/Apolo-UI/tree/master)
 [![npm version](https://badge.fury.io/js/apolo-ui-test.svg)](https://badge.fury.io/js/apolo-ui-test)
  
- 一个 React UI 组件库.
+ 一个 React UI 组件库.(🔨🔨 UNDER CONSTRUCTION 🔨🔨)
  
 # 分支 
 ### master
