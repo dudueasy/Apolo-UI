@@ -1,7 +1,8 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {HashRouter as Router, Switch,Route, Link} from 'react-router-dom';
 import IconExample from './lib/icon/icon.example';
+import DialogExample from './lib/dialog/dialog.example';
 
 void 'examples 不要改动这一行代码！'; // tslint:disable-line
 
@@ -18,18 +19,11 @@ const Home = ()=>(
             <div className="left-panel">
                 <aside>
                     this is left panel
-                    <ul>
-                        <li>
-                            <Link to="/">
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/Icon">
-                                Icon
-                            </Link>
-                        </li>
-                    </ul>
+                  <ul>
+                    <li> <Link to="/"> Home </Link> </li>
+                    <li> <Link to="/icon"> Icon </Link> </li>
+                    <li> <Link to="/dialog"> Dialog </Link> </li>
+                  </ul>
                 </aside>
             </div>
             <div className="main-content">
@@ -45,8 +39,9 @@ const Home = ()=>(
 ReactDOM.render(
     <Router>
         <Home/>
-        <Switch>
-            <Route path="/Icon" component={IconExample}/>
-        </Switch>
+      <Switch>
+        <Route path="/icon" component={IconExample}/>
+        <Route path="/dialog" component={DialogExample}/>
+      </Switch>
     </Router>
     , document.getElementById('app'));
