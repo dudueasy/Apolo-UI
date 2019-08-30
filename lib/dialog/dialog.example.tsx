@@ -11,10 +11,19 @@ export default function(){
       <button onClick={()=>{  toggleVisible((visible)=>(!visible))}}>
         toggleDialog
       </button>
-      <Dialog visible={visible}>11111</Dialog>
+      <Dialog
+        visible={visible}
+        buttons={[
+          <button onClick={()=>{toggleVisible(false)}}>
+            cancel
+          </button> ,
+          <button onClick={()=>{toggleVisible(false)}}>
+            ok
+          </button>
+        ]}
+      >11111</Dialog>
     </div>
   );
-
 }
 
 

@@ -1,4 +1,6 @@
 .apoloUI-icon {
   width: 1em;
-  height: 1em
+  height: 1em;
+  // 让 svg 元素使用 父组件的 color 作为填充颜色
+  //fill:currentColor;
 }

@@ -1,43 +1,38 @@
-import React, {ReactNode, useEffect, useState} from 'react';
+import React, {ReactElement, ReactNode, useEffect, useState} from 'react';
 import './dialog.scss';
 import {Icon} from '../index';
 import {scopedClassMaker} from '../utils/className';
 
+
 class Props {
   visible: boolean = false;
-  children: ReactNode;
+  buttons: ReactElement[];
 }
 
-interface State {}
-
-const scopedClass = scopedClassMaker('apoloUI-dialog');
-const sc = scopedClass;
+const scopedClassName = scopedClassMaker('apoloUI-dialog');
+const sc = scopedClassName;
 
 const Dialog: React.FC<Props> = (props) => {
+  const {visible, buttons} = props;
 
-  return (
-    <>
-      {props.visible &&
-      <>
-        <div className={sc( 'mask' )}>
-        </div>
-        <div className={sc()}>
-          <div className={sc('close')}>
-            <Icon name={'close'}/>
-          </div>
-          <header className={sc('header')}>header</header>
-          <main className={sc('main')}>
-            {props.children}
-          </main>
-          <footer className={sc('footer')}>
-            <button>ok</button>
-            <button>cancel</button>
-          </footer>
-        </div>
-      </>
-      }
-    </>
-  );
+  useEffect(() => {console.log('visible is changed to: ', visible);}, [visible]);
+
+  return <>{visible && <>
+    <div className={sc('mask')}/>
+    <div className={sc()}>
+      <div className={sc('close')}>
+        <Icon name={'close'}/>
+      </div>
+      <header className={sc('header')}>header</header>
+      <main className={sc('main')}>{props.children}</main>
+      <footer className={sc('footer')}>
+        {buttons}
+        {/*<button>ok</button> <button>cancel</button>*/}
+      </footer>
+    </div>
+  </>
+  }
+  </>;
 };
 
 
