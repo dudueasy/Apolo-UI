@@ -6,28 +6,37 @@ import {scopedClassMaker} from '../utils/className';
 
 class Props {
   visible: boolean = false;
-  buttons: ReactElement[];
+  buttons?: ReactElement[];
+  onClose: ()=>void;
+  closeOnMaskClick?: boolean;
 }
 
 const scopedClassName = scopedClassMaker('apoloUI-dialog');
 const sc = scopedClassName;
 
 const Dialog: React.FC<Props> = (props) => {
-  const {visible, buttons} = props;
+  const {visible, buttons, onClose, closeOnMaskClick} = props;
 
-  useEffect(() => {console.log('visible is changed to: ', visible);}, [visible]);
 
-  return <>{visible && <>
-    <div className={sc('mask')}/>
+  const onMaskClick: React.MouseEventHandler = (e)=>{
+     closeOnMaskClick? onClose(): null
+  }
+
+  return <>{visible  && <>
+    <div className={sc('mask')} onClick={onMaskClick}/>
     <div className={sc()}>
       <div className={sc('close')}>
-        <Icon name={'close'}/>
+        <Icon name={'close'}
+          onClick={onClose}
+        />
       </div>
       <header className={sc('header')}>header</header>
       <main className={sc('main')}>{props.children}</main>
       <footer className={sc('footer')}>
-        {buttons}
-        {/*<button>ok</button> <button>cancel</button>*/}
+        {/*{buttons!.map(( button , index )=> Object.assign({}, button, {key: index} ))}*/}
+        {buttons && buttons.map(( button, index )=>
+          React.cloneElement(button,{key: index} ))
+        }
       </footer>
     </div>
   </>
@@ -35,6 +44,9 @@ const Dialog: React.FC<Props> = (props) => {
   </>;
 };
 
+Dialog.defaultProps = {
+  closeOnMaskClick: true
+}
 
 export default Dialog;
 
