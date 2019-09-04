@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Dialog from './dialog';
+import Dialog,{alert} from './dialog';
 
 
 export default function () {
@@ -13,7 +13,7 @@ export default function () {
 
   return (
     <div>
-      <div style={{position:"relative", zIndex:10}}>
+      <div>
         <h2>Example1</h2>
         <button onClick={() => {toggleVisible((visible) => (!visible));}}>
           toggleDialog
@@ -50,7 +50,12 @@ export default function () {
           ]}
         >11111</Dialog>
       </div>
+      <div>
+        <h2>Example 3</h2>
+        <button onClick={()=>{ alert('111')}}> alert </button>
+      </div>
     </div>
+
   );
 }
 
