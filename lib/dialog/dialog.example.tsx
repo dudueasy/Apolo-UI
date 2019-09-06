@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Dialog,{alert} from './dialog';
+import Dialog, {alert} from './dialog';
 
 
 export default function () {
@@ -51,8 +51,21 @@ export default function () {
         >11111</Dialog>
       </div>
       <div>
-        <h2>Example 3</h2>
-        <button onClick={()=>{ alert('111')}}> alert </button>
+        <h2>Example for Dialog.alert</h2>
+        <button onClick={()=>{ Dialog.alert('111')}}>alert</button>
+      </div>
+
+      <div>
+        <h2>Example for Dialog.confirm</h2>
+        <button onClick={()=>{
+          Dialog.confirm({
+            content: '111',
+            onOk:()=>{console.log('yes')},
+            onCancel:()=>{console.log('no')},
+          })
+        }}>
+          confirm
+        </button>
       </div>
     </div>
 
