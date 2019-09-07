@@ -6,9 +6,6 @@ export default function () {
 
   const [visible, toggleVisible] = useState<boolean>(false);
 
-  const handleOpen = () => { toggleVisible(true); };
-  const handleClose = () => { toggleVisible(false);};
-
   const [Xvisible, toggleXVisible] = useState<boolean>(false);
 
   return (
@@ -20,7 +17,7 @@ export default function () {
         </button>
         <Dialog
           visible={visible}
-          onClose={handleClose}
+          onClose={() => { toggleVisible(false)}}
           buttons={[
             <button onClick={()=>{toggleVisible(false)}}>
               cancel
@@ -52,7 +49,10 @@ export default function () {
       </div>
       <div>
         <h2>Example for Dialog.alert</h2>
-        <button onClick={()=>{ Dialog.alert('111')}}>alert</button>
+        <button onClick={()=>{
+          Dialog.alert({content:'111'})
+        }
+        }>alert</button>
       </div>
 
       <div>
@@ -65,6 +65,21 @@ export default function () {
           })
         }}>
           confirm
+        </button>
+      </div>
+
+      <div>
+        <h2>Example for Dialog.modal</h2>
+        <button onClick={()=>{
+          const onClose = Dialog.modal( {content: (
+            <>
+            <h1>Hello</h1>
+              <button onClick={()=>{onClose()}}>close Modal</button>
+            </>
+            )})
+        }}
+        >
+          modal
         </button>
       </div>
     </div>

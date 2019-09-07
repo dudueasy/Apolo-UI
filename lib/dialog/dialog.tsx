@@ -1,24 +1,34 @@
-import React, {ReactElement, ReactNode, useEffect, useState} from 'react';
+import React, {ReactElement, ReactFragment, ReactNode, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import './dialog.scss';
 import {Icon} from '../index';
 import {scopedClassMaker} from '../utils/className';
 
-class Props {
-  title?: string;
-  visible: boolean = false;
+export class DialogProps {
+  title?: ReactNode;
+  visible?: boolean = false;
   buttons?: ReactElement[];
   onClose?: () => void;
   closeOnMaskClick?: boolean;
+  content?: ReactNode
 }
 
+export interface DialogFuncProps extends DialogProps{
+  onOk?: ()=>void
+  onCancel?: ()=>void
+}
+
+export interface DialogFunc {
+  (props: DialogFuncProps): any
+}
 
 const scopedClassName = scopedClassMaker('apoloUI-dialog');
 const sc = scopedClassName;
 
-type DialogComponent = React.FC<Props> & {
-  alert: (content: string)=> void
-  confirm: (props: {content: string, onOk?:()=>void, onCancel?: ()=>void})=> void
+type DialogComponent = React.FC<DialogProps> & {
+  alert:DialogFunc
+  confirm: DialogFunc
+  modal: DialogFunc
 }
 
 // const Dialog: React.FC<Props> = (props) => {
@@ -39,11 +49,13 @@ const Dialog: DialogComponent = (props) => {
       </div>
       <header className={sc('header')}>{props.title}</header>
       <main className={sc('main')}>{props.children}</main>
-      <footer className={sc('footer')}>
-        {buttons && buttons.map((button, index) =>
-          React.cloneElement(button, {key: index}))
-        }
-      </footer>
+      { buttons && buttons.length > 0 &&
+        <footer className={sc('footer')}>
+          {buttons.map((button, index) =>
+            React.cloneElement(button, {key: index}))
+          }
+        </footer>
+      }
     </div>
   </>;
 
@@ -59,30 +71,74 @@ Dialog.defaultProps = {
   title: '提示',
 };
 
-
 // 定义 alert 函数, 触发时生成一个预设的 Dialog
-Dialog.alert = (content: string) => {
-
+Dialog.alert = ({content}) => {
   const div = document.createElement('div');
   document.body.appendChild(div);
 
-  const component = <Dialog visible={true} onClose={() => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-    ReactDOM.unmountComponentAtNode(div)
-    div.remove()
-  }}>
-    {content}
-  </Dialog>;
+  const onClose = () => {
+      ReactDOM.render(React.cloneElement(component, {visible: false}), div);
+      ReactDOM.unmountComponentAtNode(div)
+      div.remove()
+    }
+
+  const component = (
+    <Dialog
+      visible={true}
+      title={'alert'}
+      onClose={onClose}
+    >
+      {content}
+    </Dialog>
+  );
 
   ReactDOM.render(component, div);
 };
 
-Dialog.confirm = (props: { content: string, onOk():void, onCancel():void} ) => {
-
+Dialog.confirm = (props: DialogFuncProps ) => {
   const {content, onOk, onCancel} = props
 
+  const onClose = ()=>{
+    ReactDOM.render(<Dialog visible={false}/>, div)
+    ReactDOM.unmountComponentAtNode(div)
+    div.remove()
+  }
 
-  const closeConfirm = ():void=>{
+  const component = (
+    <Dialog
+      title={'confirm'}
+      visible={true}
+      buttons={[
+        <button onClick={()=>{
+          onClose()
+          if(onCancel) onCancel()
+        }}>
+          cancel
+        </button>,
+        <button onClick={()=>{
+          onClose()
+          if(onOk) onOk()
+        }}>
+          ok
+        </button>,
+      ]}
+
+      onClose={onClose}>
+      {content}
+    </Dialog>
+  )
+
+  const div = document.createElement('div')
+  document.body.appendChild(div)
+
+  ReactDOM.render(component,div)
+}
+
+Dialog.modal = (props: DialogFuncProps):()=>void =>
+{
+  const {content, onOk, onCancel} = props
+
+  const closeModal = ():void=>{
     ReactDOM.render(React.cloneElement(component, {visible: false}),div)
     ReactDOM.unmountComponentAtNode(div)
     div.remove()
@@ -90,24 +146,8 @@ Dialog.confirm = (props: { content: string, onOk():void, onCancel():void} ) => {
 
   const component = (
     <Dialog
+      title={'confirm'}
       visible={true}
-      buttons={[
-
-        <button onClick={()=>{
-          closeConfirm()
-          onOk()
-        }}>
-          ok
-        </button>,
-
-        <button onClick={()=>{
-          closeConfirm()
-          onCancel()
-        }}>
-          cancel
-        </button>,
-
-      ]}
       onClose={()=>{
         ReactDOM.render(<Dialog visible={false}/>, div)
         ReactDOM.unmountComponentAtNode(div)
@@ -121,17 +161,13 @@ Dialog.confirm = (props: { content: string, onOk():void, onCancel():void} ) => {
   document.body.appendChild(div)
 
   ReactDOM.render(component,div)
+  return closeModal
 }
 
 
 const alert = Dialog.alert
 const confirm = Dialog.confirm
+const modal = Dialog.modal
 
-export {alert, confirm}
-
+export {alert, confirm, modal}
 export default Dialog;
-
-
-
-
-
