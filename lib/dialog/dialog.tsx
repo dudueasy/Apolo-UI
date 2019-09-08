@@ -5,12 +5,12 @@ import {Icon} from '../index';
 import {scopedClassMaker} from '../utils/className';
 
 export class DialogProps {
-  title?: ReactNode;
   visible?: boolean = false;
-  buttons?: ReactElement[];
-  onClose?: () => void;
-  closeOnMaskClick?: boolean;
+  title?: ReactNode;
   content?: ReactNode
+  buttons?: ReactElement[];
+  closeOnMaskClick?: boolean;
+  onClose?: () => void;
 }
 
 export interface DialogFuncProps extends DialogProps{
@@ -19,7 +19,7 @@ export interface DialogFuncProps extends DialogProps{
 }
 
 export interface DialogFunc {
-  (props: DialogFuncProps): any
+  (props: DialogFuncProps): ()=>void
 }
 
 const scopedClassName = scopedClassMaker('apoloUI-dialog');
@@ -47,14 +47,17 @@ const Dialog: DialogComponent = (props) => {
               onClick={onClose}
         />
       </div>
-      <header className={sc('header')}>{props.title}</header>
+      {
+        props.title &&
+        <header className={sc('header')}>{props.title}</header>
+      }
       <main className={sc('main')}>{props.children}</main>
       { buttons && buttons.length > 0 &&
-        <footer className={sc('footer')}>
-          {buttons.map((button, index) =>
-            React.cloneElement(button, {key: index}))
-          }
-        </footer>
+      <footer className={sc('footer')}>
+        {buttons.map((button, index) =>
+          React.cloneElement(button, {key: index}))
+        }
+      </footer>
       }
     </div>
   </>;
@@ -71,103 +74,88 @@ Dialog.defaultProps = {
   title: '提示',
 };
 
-// 定义 alert 函数, 触发时生成一个预设的 Dialog
-Dialog.alert = ({content}) => {
-  const div = document.createElement('div');
-  document.body.appendChild(div);
+const modal = (props: DialogFuncProps):()=>void => {
+  const {title, content, buttons, onOk, onCancel} = props
 
-  const onClose = () => {
-      ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-      ReactDOM.unmountComponentAtNode(div)
-      div.remove()
-    }
-
-  const component = (
-    <Dialog
-      visible={true}
-      title={'alert'}
-      onClose={onClose}
-    >
-      {content}
-    </Dialog>
-  );
-
-  ReactDOM.render(component, div);
-};
-
-Dialog.confirm = (props: DialogFuncProps ) => {
-  const {content, onOk, onCancel} = props
-
-  const onClose = ()=>{
-    ReactDOM.render(<Dialog visible={false}/>, div)
-    ReactDOM.unmountComponentAtNode(div)
-    div.remove()
-  }
-
-  const component = (
-    <Dialog
-      title={'confirm'}
-      visible={true}
-      buttons={[
-        <button onClick={()=>{
-          onClose()
-          if(onCancel) onCancel()
-        }}>
-          cancel
-        </button>,
-        <button onClick={()=>{
-          onClose()
-          if(onOk) onOk()
-        }}>
-          ok
-        </button>,
-      ]}
-
-      onClose={onClose}>
-      {content}
-    </Dialog>
-  )
-
-  const div = document.createElement('div')
-  document.body.appendChild(div)
-
-  ReactDOM.render(component,div)
-}
-
-Dialog.modal = (props: DialogFuncProps):()=>void =>
-{
-  const {content, onOk, onCancel} = props
-
-  const closeModal = ():void=>{
+  const closeDialog = ():void=>{
     ReactDOM.render(React.cloneElement(component, {visible: false}),div)
     ReactDOM.unmountComponentAtNode(div)
     div.remove()
+    onCancel && onCancel()
   }
 
   const component = (
     <Dialog
-      title={'confirm'}
+      title={title}
       visible={true}
-      onClose={()=>{
-        ReactDOM.render(<Dialog visible={false}/>, div)
-        ReactDOM.unmountComponentAtNode(div)
-        div.remove()
-      }}>
+      onClose={ closeDialog }
+      buttons={buttons}
+    >
       {content}
     </Dialog>
   )
 
   const div = document.createElement('div')
   document.body.appendChild(div)
-
   ReactDOM.render(component,div)
-  return closeModal
+
+  return closeDialog
 }
 
+// 定义 alert 函数, 触发时渲染一个预设的 Dialog
+// 接收 title 和 content
+// 有一个自带的 ok 按钮, 点击时关闭 Dialog
+const alert = (props: DialogFuncProps) => {
+  const {title,content} = props
 
-const alert = Dialog.alert
-const confirm = Dialog.confirm
-const modal = Dialog.modal
+  const onClose = modal({
+    title,
+    content,
+    buttons:[
+      <button onClick={()=>onClose()}>ok</button>
+    ]
+  })
+
+  return onClose
+};
+
+// 定义 confirm 函数, 触发时渲染一个预设的 Dialog
+// 接收 title, content, onOk, onCancel
+// 有两个自带的按钮, 这两个按钮分别执行 用户传入的 onOk, 和 onCancel 参数函数.
+// 按钮点击后还会关闭 Dialog
+const confirm = (props: DialogFuncProps ) =>{
+  const {title, content, onOk, onCancel} = props
+
+  const onClose = modal({
+    title,
+    content,
+    buttons:[
+      <button onClick={()=>{
+        onClose()
+        if(onCancel) onCancel()
+      }}>
+        cancel
+      </button>
+      ,
+      <button onClick={()=>{
+        onClose()
+        if(onOk) onOk()
+      }}>
+        ok
+      </button>,
+    ]
+  })
+
+  return onClose
+}
+
+// 定义 modal 函数, 触发时渲染一个预设的 Dialog
+// 接收 title 和 content 两个参数
+// 返回一个可以关闭自身的函数.
+
+Dialog.alert = alert
+Dialog.confirm = confirm
+Dialog.modal = modal
 
 export {alert, confirm, modal}
 export default Dialog;

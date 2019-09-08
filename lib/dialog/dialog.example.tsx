@@ -5,7 +5,6 @@ import Dialog, {alert} from './dialog';
 export default function () {
 
   const [visible, toggleVisible] = useState<boolean>(false);
-
   const [Xvisible, toggleXVisible] = useState<boolean>(false);
 
   return (
@@ -50,7 +49,10 @@ export default function () {
       <div>
         <h2>Example for Dialog.alert</h2>
         <button onClick={()=>{
-          Dialog.alert({content:'111'})
+          Dialog.alert({
+            title:'alert demo',
+            content:'111',
+          })
         }
         }>alert</button>
       </div>
@@ -59,6 +61,7 @@ export default function () {
         <h2>Example for Dialog.confirm</h2>
         <button onClick={()=>{
           Dialog.confirm({
+            title:'confirm demo',
             content: '111',
             onOk:()=>{console.log('yes')},
             onCancel:()=>{console.log('no')},
@@ -71,12 +74,15 @@ export default function () {
       <div>
         <h2>Example for Dialog.modal</h2>
         <button onClick={()=>{
-          const onClose = Dialog.modal( {content: (
-            <>
-            <h1>Hello</h1>
-              <button onClick={()=>{onClose()}}>close Modal</button>
-            </>
-            )})
+          const onClose = Dialog.modal( {
+            content: (
+              <>
+                <h1>Hello</h1>
+                <button onClick={()=>{onClose()}}>close Modal</button>
+              </>
+            ),
+            title: <h2>Modal Example</h2>
+          })
         }}
         >
           modal
@@ -86,12 +92,3 @@ export default function () {
 
   );
 }
-
-
-
-
-
-
-
-
-
