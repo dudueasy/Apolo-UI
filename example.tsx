@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {HashRouter as Router, Switch,Route, Link} from 'react-router-dom';
 import IconExample from './lib/icon/icon.example';
 import DialogExample from './lib/dialog/dialog.example';
+import LayoutExample from './lib/layout/layout.example';
 
 void 'examples 不要改动这一行代码！'; // tslint:disable-line
 
@@ -23,6 +24,7 @@ const Home = ()=>(
                     <li> <Link to="/"> Home </Link> </li>
                     <li> <Link to="/icon"> Icon </Link> </li>
                     <li> <Link to="/dialog"> Dialog </Link> </li>
+                    <li> <Link to="/layout"> Layout </Link> </li>
                   </ul>
                 </aside>
             </div>
@@ -42,6 +44,7 @@ ReactDOM.render(
       <Switch>
         <Route path="/icon" component={IconExample}/>
         <Route path="/dialog" component={DialogExample}/>
+        <Route path="/layout" component={LayoutExample}/>
       </Switch>
     </Router>
     , document.getElementById('app'));
