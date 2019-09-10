@@ -1,15 +1,20 @@
 import React from 'react';
 import {scopedClassMaker} from '../utils/className';
+import combineClassNames from '../utils/combineClassNames';
+
 const sc = scopedClassMaker('apoloUI-layout')
 
-interface LayoutFooterProps {
+interface LayoutFooterProps extends React.HTMLAttributes<HTMLElement>{
   className?: string
-  style?: React.CSSProperties
 }
 
 const Footer: React.FC<LayoutFooterProps> = (props) => {
-  return (
-    <div className={sc('footer')}>{props.children}</div>
+  const {className, ...rest} = props
+  return (<>
+      <div className={combineClassNames(sc('footer'), className)} {...rest} >
+        {props.children}
+      </div>
+    </>
   );
 };
 

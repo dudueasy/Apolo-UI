@@ -1,15 +1,17 @@
 import React from 'react';
 import {scopedClassMaker} from '../utils/className';
-const sc = scopedClassMaker('apoloUI-layout')
+import combineClassNames from '../utils/combineClassNames';
 
-interface LayoutHeaderProps {
+const sc = scopedClassMaker('apoloUI-layout');
+
+interface LayoutHeaderProps extends React.HTMLAttributes<HTMLElement> {
   className?: string
-  style?: React.CSSProperties
 }
 
 const Header: React.FC<LayoutHeaderProps> = (props) => {
+  const {className, ...rest} = props;
   return (
-    <div className={sc('header')}> {props.children} </div>
+    <div className={combineClassNames(sc('header'), className)} {...rest} > {props.children}</div>
   );
 };
 

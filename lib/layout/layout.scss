@@ -2,12 +2,24 @@
 
 .apoloUI-layout{
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
 
   &-header{ }
 
-  &-sider{ }
+  &-sider{
+    border: 1px solid dodgerblue;
+  }
 
-  &-content{ }
+  &-content{
+    flex-grow: 1;
+    border: 1px solid rebeccapurple;
+  }
 
   &-footer{ }
+  & & {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+  }
 }

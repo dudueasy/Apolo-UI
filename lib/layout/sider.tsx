@@ -1,15 +1,19 @@
 import React from 'react';
 import {scopedClassMaker} from '../utils/className';
+import combineClassNames from '../utils/combineClassNames';
 const sc = scopedClassMaker('apoloUI-layout')
 
-interface LayoutSiderProps {
+interface LayoutSiderProps extends React.HTMLAttributes<HTMLElement>{
   className?: string
-  style?: React.CSSProperties
 }
 
 const Sider: React.FC<LayoutSiderProps> = (props) => {
-  return (
-    <div className={sc('sider')}>{props.children}</div>
+  const {className, ...rest} = props
+  return (<>
+      <div className={combineClassNames(sc('sider'), className)} {...rest} >
+        {props.children}
+      </div>
+    </>
   );
 };
 
