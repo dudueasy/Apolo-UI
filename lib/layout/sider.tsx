@@ -3,9 +3,7 @@ import {scopedClassMaker} from '../utils/className';
 import combineClassNames from '../utils/combineClassNames';
 const sc = scopedClassMaker('apoloUI-layout')
 
-interface LayoutSiderProps extends React.HTMLAttributes<HTMLElement>{
-  className?: string
-}
+interface LayoutSiderProps extends React.HTMLAttributes<HTMLElement>{ }
 
 const Sider: React.FC<LayoutSiderProps> = (props) => {
   const {className, ...rest} = props

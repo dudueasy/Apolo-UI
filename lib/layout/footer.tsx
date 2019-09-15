@@ -4,9 +4,7 @@ import combineClassNames from '../utils/combineClassNames';
 
 const sc = scopedClassMaker('apoloUI-layout')
 
-interface LayoutFooterProps extends React.HTMLAttributes<HTMLElement>{
-  className?: string
-}
+interface LayoutFooterProps extends React.HTMLAttributes<HTMLElement>{ }
 
 const Footer: React.FC<LayoutFooterProps> = (props) => {
   const {className, ...rest} = props
