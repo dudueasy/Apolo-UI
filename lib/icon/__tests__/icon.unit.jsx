@@ -19,8 +19,8 @@ describe('Icon Component', () => {
 
     const wrapper = shallow(<Icon {...IconProps}/>);
 
-    wrapper.simulate('click')
-    wrapper.simulate('click')
+    wrapper.simulate('click');
+    wrapper.simulate('click');
 
     expect(onClick).toHaveBeenCalledTimes(2)
   });

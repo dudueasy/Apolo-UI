@@ -2,6 +2,6 @@
 
 exports[`Layout component should match snapshot 1`] = `
 <div
-  className="apoloUI-layout hello"
+  className="hello"
 />
 `;

@@ -1,6 +1,5 @@
 import React from 'react';
-import {scopedClassMaker} from '../utils/className';
-import combineClassNames from '../utils/combineClassNames';
+import combineClassNames, {scopedClassMaker} from '../utils/className';
 
 const sc = scopedClassMaker('apoloUI-layout');
 

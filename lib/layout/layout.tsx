@@ -1,7 +1,6 @@
 import React, {ReactElement} from 'react';
-import {scopedClassMaker} from '../utils/className';
+import combineClassNames, {scopedClassMaker} from '../utils/className';
 import './layout.scss';
-import combineClassNames from '../utils/combineClassNames';
 import Sider from './sider';
 
 const sc = scopedClassMaker('apoloUI-layout');
@@ -15,8 +14,8 @@ const Layout: React.FunctionComponent<LayoutProps> = (props) => {
   let children = props.children as Array<ReactElement>;
 
   // 判断 渲染的 children 中是否有 Sider
-  const hasSider = children.length &&
-    (props.children as Array<ReactElement>).some(node => node.type === Sider)
+  const hasSider = children && children.length &&
+    (props.children as Array<ReactElement>).some(node => node.type === Sider);
 
   return (
     <div className={

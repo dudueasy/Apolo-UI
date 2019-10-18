@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import Dialog, {alert} from './dialog';
+import React, {useState} from 'react';
+import Dialog from './dialog';
 
 
 export default function () {

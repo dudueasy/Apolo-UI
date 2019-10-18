@@ -5,8 +5,8 @@ import '../utils/importAllSvg';
 
 // 引入样式文件
 import './icon.scss';
+import combineClassNames from '../utils/className';
 
-import combineClassNames from '../utils/combineClassNames';
 
 interface Props extends React.SVGAttributes<SVGElement> {
     name: string,
