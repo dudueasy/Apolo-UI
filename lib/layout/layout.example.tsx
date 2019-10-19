@@ -41,6 +41,26 @@ export default (props: any) => {
         </Layout>
       </div>
 
+      <div>
+        <h1>Example 4</h1>
+        <Layout style={{borderRadius: 3, height: 500}}>
+          <Sider> sider </Sider>
+          <Layout>
+            <Header> header </Header>
+            <Content>
+              <Layout>
+                <Sider>sider</Sider>
+                <Layout>
+                  <Content>content</Content>
+                  <Footer>footer</Footer>
+                </Layout>
+              </Layout>
+            </Content>
+            <Footer> footer </Footer>
+          </Layout>
+        </Layout>
+      </div>
+
     </>
   );
 };

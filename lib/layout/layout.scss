@@ -1,6 +1,7 @@
 @import '../_helper.scss';
 
 .apoloUI-layout{
+  height: 100%;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -16,13 +17,6 @@
     border: 1px solid rebeccapurple;
   }
 
-  &.has-sider{
-    flex-direction: row;
-    .apoloUI-layout{
-      flex-direction: column;
-    }
-  }
-
   &-footer{ }
 
   & & {
@@ -30,6 +24,9 @@
     display: flex;
   }
 
+  &.has-sider{
+    flex-direction: row;
+  }
 }
 
 
