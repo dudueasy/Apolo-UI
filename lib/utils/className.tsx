@@ -13,7 +13,6 @@ const scopedClassMaker = (prefix: string) =>
         .entries(typeof suffix === 'string' ? {[suffix]: true} : suffix)
         .filter(kv => kv[0] && kv[1])
         .map(kv => kv[0])
-        .filter(Boolean)
         .map(suffix => [prefix, suffix].join('-'))
         .concat(options && options.extra? options.extra:[])
         .join(' ') :

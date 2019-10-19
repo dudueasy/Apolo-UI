@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "skipLibCheck": true,
     "outDir": "dist",
     "baseUrl": ".",
     "module": "es6",
@@ -32,6 +33,6 @@
     "jest"
   ],
   "awesomeTypescriptLoaderOptions": {
-    "silent": true
+//    "silent": true
   }
 }
