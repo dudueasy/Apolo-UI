@@ -1,22 +1,29 @@
-import { scopedClassMaker }  from '../utils/className'
+import {ClassOptions, scopedClassMaker, SuffixToggles} from '../utils/className';
 
 
 describe('scopedClassMaker', function () {
-  test('should work properly', ()=>{
-    let y = scopedClassMaker('hello');
-    let z = y('world', {extra: 'yes'});
-
-    expect(z).toBe('hello-world yes');
-
-
-    let c = y({world: true, young: true, cool: false, '': true}, {
-      extra: 'apolo'
-    });
-
-    expect(c).toBe('hello-world hello-young apolo' )
+  let sc:(suffix?: string | SuffixToggles, options?: ClassOptions)=>string|undefined;
+  beforeEach(() => {
+    sc = scopedClassMaker('apolo-ui');
+  });
 
 
+
+  test('should work fine with empty string as parameter', ()=>{
+    expect(sc('')).toBe('apolo-ui')
   })
+
+
+  test('should work properly', () => {
+    expect(sc('layout')).toBe('apolo-ui-layout');
+  });
+
+  test('should work fine with Object suffix', () => {
+    const suffix: SuffixToggles = {world: true, young: true, cool: false, '': true};
+    expect(sc(suffix)).toBe('apolo-ui-world apolo-ui-young');
+  });
+
+
 });
 
 
