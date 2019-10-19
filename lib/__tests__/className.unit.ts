@@ -7,12 +7,9 @@ describe('scopedClassMaker', function () {
     sc = scopedClassMaker('apolo-ui');
   });
 
-
-
   test('should work fine with empty string as parameter', ()=>{
     expect(sc('')).toBe('apolo-ui')
   })
-
 
   test('should work properly', () => {
     expect(sc('layout')).toBe('apolo-ui-layout');
@@ -23,6 +20,12 @@ describe('scopedClassMaker', function () {
     expect(sc(suffix)).toBe('apolo-ui-world apolo-ui-young');
   });
 
+  test('should concat options.extra properly', ()=>{
+    const suffix: SuffixToggles = {young: true}
+    const options = {extra: 'awesome'}
+
+    expect(sc(suffix, options)).toBe('apolo-ui-young awesome')
+  })
 
 });
 
