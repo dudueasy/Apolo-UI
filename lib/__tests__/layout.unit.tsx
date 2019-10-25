@@ -9,7 +9,7 @@ describe('Layout component', ()=>{
   test('should render properly', function () {
     const component = shallow(<Layout className={'hello'}/>);
 
-    const layoutWrapper = component.find('[className="hello"]');
+    const layoutWrapper = component.find('[className="apoloUI-layout hello"]');
 
     expect(layoutWrapper.exists()).toBeTruthy();
     console.log(layoutWrapper.debug())
