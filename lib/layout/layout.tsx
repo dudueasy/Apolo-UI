@@ -18,10 +18,11 @@ const Layout: React.FunctionComponent<LayoutProps> = (props) => {
     (props.children as Array<ReactElement>).some(node => node.type === Sider);
 
   return (
-    <div className={
-      combineClassNames(sc(), className, hasSider ? 'has-sider' : '')
-    }
-         {...rest}
+    <div
+      className={
+        combineClassNames(sc(), className, hasSider ? 'has-sider' : '')
+      }
+      {...rest}
     >
       {props.children}
     </div>
