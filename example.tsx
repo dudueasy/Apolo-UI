@@ -1,50 +1,54 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter as Router, Switch,Route, Link} from 'react-router-dom';
+import {HashRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import IconExample from './lib/icon/icon.example';
 import DialogExample from './lib/dialog/dialog.example';
 import LayoutExample from './lib/layout/layout.example';
+import {Layout, Header, Content, Sider, Footer} from './lib/layout/layout';
 
 void 'examples 不要改动这一行代码！'; // tslint:disable-line
 
-interface routerMatch{
-    [key:string]: any
+interface routerMatch {
+  [key: string]: any
 }
 
-const Home = ()=>(
-    <div>
-        <div className="header">
-            <header>Apolo-UI logo</header>
-        </div>
-        <div>
-            <div className="left-panel">
-                <aside>
-                    this is left panel
-                  <ul>
-                    <li> <Link to="/"> Home </Link> </li>
-                    <li> <Link to="/icon"> Icon </Link> </li>
-                    <li> <Link to="/dialog"> Dialog </Link> </li>
-                    <li> <Link to="/layout"> Layout </Link> </li>
-                  </ul>
-                </aside>
-            </div>
-            <div className="main-content">
-                <main>
-                    this is main container
-                </main>
-            </div>
-        </div>
-    </div>
-)
+const Home = () => (
+  <Layout>
+    <Header style={{background: 'purple'}}>
+      <div>
+        Apolo-UI logo
+      </div>
+    </Header>
+    <Layout style={{background: 'rgba(0,0,0,0.1)'}}>
+      <Sider style={{border: '1px solid black'}}>
+        this is left panel
+        <ul>
+          <li><Link to="/"> Home </Link></li>
+          <li><Link to="/icon"> Icon </Link></li>
+          <li><Link to="/dialog"> Dialog </Link></li>
+          <li><Link to="/layout"> Layout </Link></li>
+        </ul>
+      </Sider>
+      <Layout style={{border: '1px solid black'}}>
+        <Content>
+          <Switch>
+            <Route path="/icon" component={IconExample}/>
+            <Route path="/dialog" component={DialogExample}/>
+            <Route path="/layout" component={LayoutExample}/>
+            <Route path="/" component={()=><h1>Apolo-UI</h1>}/>
+          </Switch>
+        </Content>
+        <Footer style={{background: 'pink'}}>
+          footer
+        </Footer>
+      </Layout>
+    </Layout>
+  </Layout>
+);
 
 
 ReactDOM.render(
-    <Router>
-        <Home/>
-      <Switch>
-        <Route path="/icon" component={IconExample}/>
-        <Route path="/dialog" component={DialogExample}/>
-        <Route path="/layout" component={LayoutExample}/>
-      </Switch>
-    </Router>
-    , document.getElementById('app'));
+  <Router>
+    <Home/>
+  </Router>
+  , document.getElementById('app'));
