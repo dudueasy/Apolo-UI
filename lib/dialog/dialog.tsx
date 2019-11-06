@@ -74,8 +74,12 @@ Dialog.defaultProps = {
   title: '提示',
 };
 
+
+// modal() 作为 alert() 和 confirm() 的共用部分
 const modal = (props: DialogFuncProps):()=>void => {
   const {title, content, buttons, onOk, onCancel} = props;
+  const div = document.createElement('div');
+  document.body.appendChild(div);
 
   const closeDialog = ():void=>{
     ReactDOM.render(React.cloneElement(component, {visible: false}),div);
@@ -95,8 +99,6 @@ const modal = (props: DialogFuncProps):()=>void => {
     </Dialog>
   );
 
-  const div = document.createElement('div');
-  document.body.appendChild(div);
   ReactDOM.render(component,div);
 
   return closeDialog
