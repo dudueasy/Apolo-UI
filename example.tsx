@@ -5,6 +5,7 @@ import IconExample from './lib/icon/icon.example';
 import DialogExample from './lib/dialog/dialog.example';
 import LayoutExample from './lib/layout/layout.example';
 import {Layout, Header, Content, Sider, Footer} from './lib/layout/layout';
+import './example.scss'
 
 void 'examples 不要改动这一行代码！'; // tslint:disable-line
 
@@ -13,9 +14,9 @@ interface routerMatch {
 }
 
 const Home = () => (
-  <Layout>
+  <Layout className={"page"}>
     <Header style={{background: 'purple'}}>
-      <div>
+      <div className={'logo'}>
         Apolo-UI logo
       </div>
     </Header>
