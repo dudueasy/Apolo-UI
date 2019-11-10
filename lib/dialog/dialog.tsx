@@ -105,7 +105,7 @@ const modal = (props: DialogFuncProps):()=>void => {
 };
 
 // 定义 alert 函数, 触发时渲染一个预设的 Dialog
-// 接收 title 和 content
+// 接收 title 和 url
 // 有一个自带的 ok 按钮, 点击时关闭 Dialog
 const alert = (props: DialogFuncProps) => {
   const {title,content} = props;
@@ -122,7 +122,7 @@ const alert = (props: DialogFuncProps) => {
 };
 
 // 定义 confirm 函数, 触发时渲染一个预设的 Dialog
-// 接收 title, content, onOk, onCancel
+// 接收 title, url, onOk, onCancel
 // 有两个自带的按钮, 这两个按钮分别执行 用户传入的 onOk, 和 onCancel 参数函数.
 // 按钮点击后还会关闭 Dialog
 const confirm = (props: DialogFuncProps ) =>{
@@ -152,7 +152,7 @@ const confirm = (props: DialogFuncProps ) =>{
 };
 
 // 定义 modal 函数, 触发时渲染一个预设的 Dialog
-// 接收 title 和 content 两个参数
+// 接收 title 和 url 两个参数
 // 返回一个可以关闭自身的函数.
 
 Dialog.alert = alert;
