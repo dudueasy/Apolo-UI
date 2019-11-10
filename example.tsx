@@ -6,6 +6,10 @@ import DialogExample from './lib/dialog/dialog.example';
 import LayoutExample from './lib/layout/layout.example';
 import {Layout, Header, Content, Sider, Footer} from './lib/layout/layout';
 import './example.scss'
+import logo from './logo.png';
+
+console.log(logo)
+// import logo from './'
 
 void 'examples 不要改动这一行代码！'; // tslint:disable-line
 
@@ -14,15 +18,18 @@ interface routerMatch {
 }
 
 const Home = () => (
-  <Layout className={"page"}>
-    <Header style={{background: 'purple'}}>
+  <Layout className={"site-page"}>
+    <Header className={'site-header'}>
       <div className={'logo'}>
-        Apolo-UI logo
+        <img src={logo} alt="" height={48}/>
+        <span> Apolo-UI logo </span>
       </div>
     </Header>
-    <Layout style={{background: 'rgba(0,0,0,0.1)'}}>
-      <Sider style={{border: '1px solid black'}}>
-        this is left panel
+    <Layout
+      // style={{background: 'rgba(0,0,0,0.1)'}}
+    >
+      <Sider className={'site-sider'}>
+        <h2>组件</h2>
         <ul>
           <li><Link to="/"> Home </Link></li>
           <li><Link to="/icon"> Icon </Link></li>
@@ -30,8 +37,8 @@ const Home = () => (
           <li><Link to="/layout"> Layout </Link></li>
         </ul>
       </Sider>
-      <Layout style={{border: '1px solid black'}}>
-        <Content>
+      <Layout>
+        <Content className={'site-main'}>
           <Switch>
             <Route path="/icon" component={IconExample}/>
             <Route path="/dialog" component={DialogExample}/>
@@ -39,11 +46,11 @@ const Home = () => (
             <Route path="/" component={()=><h1>Apolo-UI</h1>}/>
           </Switch>
         </Content>
-        <Footer style={{background: 'pink'}}>
-          footer
-        </Footer>
       </Layout>
     </Layout>
+      <Footer className={"site-footer"}>
+        &copy; Apolo Du
+      </Footer>
   </Layout>
 );
 

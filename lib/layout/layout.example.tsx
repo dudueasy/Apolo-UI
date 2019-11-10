@@ -43,28 +43,6 @@ export default (props: any) => {
           </Layout>
         </Layout>
       </div>
-
-      <div>
-        <h1>Example 4: 多层嵌套 </h1>
-        <p>注意: 每个 Sider 组件都需要用 Layout 组件包裹. </p>
-        <Layout className={"layout"}>
-          <Sider className={"sider"}> sider </Sider>
-          <Layout>
-            <Header className={"header"}> header </Header>
-            <Content className={"content"}>
-              <Layout>
-                <Sider className={"sider"}>sider</Sider>
-                <Layout>
-                  <Content className={"content"}>content</Content>
-                  <Footer className={"footer"}>footer</Footer>
-                </Layout>
-              </Layout>
-            </Content>
-            <Footer className={"footer"}> footer </Footer>
-          </Layout>
-        </Layout>
-      </div>
-
     </>
   );
 };
