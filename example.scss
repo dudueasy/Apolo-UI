@@ -16,16 +16,18 @@ a{
 
 .site-page{
   background: #ffffff;
+  min-height: 100vh;
 }
 
 .site-main{
-  padding-top: 16px;
+  padding: 16px;
 }
 
 .site-header{
   background: #eeeeee;
   color: $primary-color;
   padding: 8px $padding;
+  min-width: 100vw;
 
   .logo{
     display: flex;
@@ -44,7 +46,6 @@ a{
 
 .site-sider{
   border-right: 1px solid $border-color;
-  margin-right: 16px;
 
   h2{
     padding: $padding;
