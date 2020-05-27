@@ -7,3 +7,4 @@ yarn-error.log
 coverage
 test-results
 yarn.lock
+.DS_Store

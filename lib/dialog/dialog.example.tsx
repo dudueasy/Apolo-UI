@@ -3,7 +3,7 @@ import Dialog from './dialog';
 
 interface Props {}
 
-const DialogExample : React.FC<Props>= (props) => {
+const DialogExample: React.FC<Props> = (props) => {
   const [visible, toggleVisible] = useState<boolean>(false);
 
   return (
@@ -25,5 +25,5 @@ const DialogExample : React.FC<Props>= (props) => {
       >11111</Dialog>
     </div>
   );
-}
-export default DialogExample
+};
+export default DialogExample;

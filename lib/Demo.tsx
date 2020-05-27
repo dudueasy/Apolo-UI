@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import HighLight, {defaultProps} from 'prism-react-renderer';
 import styled from 'styled-components';
 
-interface Props { code: string }
+interface Props {code: string}
 
 export const Pre = styled.pre`
   text-align: left;

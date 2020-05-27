@@ -1,7 +1,7 @@
 import React from 'react';
 import IconExample from './icon.example';
 import Demo from '../Demo';
-import { ExampleWrapper } from '../ExampleWrappers';
+import {ExampleWrapper} from '../ExampleWrappers';
 
 
 interface Props {

@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter as Router, Switch, Route, NavLink} from 'react-router-dom';
-import DialogExample from './lib/dialog/dialog.example';
-import LayoutExample from './lib/layout/layout.example';
-import {Layout, Header, Content, Sider, Footer} from './lib/layout/layout';
-import './example.scss'
+import {HashRouter as Router, NavLink, Route, Switch} from 'react-router-dom';
+import {Content, Footer, Header, Layout, Sider} from './lib/layout/layout';
+import './example.scss';
 import logo from './logo.png';
 import IconDemo from './lib/icon/iconExampleWithCode';
 import DialogDemo from './lib/dialog/dialogExampleWithCode';
@@ -22,7 +20,7 @@ const Home = () => (
         <span> Apolo-UI </span>
       </div>
     </Header>
-    <Layout >
+    <Layout>
       <Sider className={'site-sider'}>
         <h2>组件</h2>
         <ul>

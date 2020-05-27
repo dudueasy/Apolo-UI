@@ -5,7 +5,7 @@ const path = require('path')
 const devConfig = {
   mode: 'development',
   entry: {
-    apoloUI: path.join(__dirname, './example.tsx'),
+    example: path.join(__dirname, './example.tsx'),
   },
   plugins: [
     // new HtmlWebpackPlugin({title: 'Custom template', template: './index.html'}),

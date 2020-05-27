@@ -3,7 +3,6 @@ import Layout from './layout';
 import Header from './header';
 import Content from './content';
 import Footer from './footer';
-import Sider from './sider';
 import './layout.example.scss';
 
 const LayoutExample = (props: any) => {

@@ -11,6 +11,7 @@
     "generate-types": "tsc -d --emitDeclarationOnly --allowJs false",
     "build": "rm -rf dist/* && webpack --config webpack.config.prod.js && yarn generate-types",
     "start": "webpack-dev-server --config webpack.config.dev.js",
+    "doc": "rm -rf dist/* && webpack --config webpack.config.doc.js",
     "analyze": "webpack  --config webpack.config.prod.js --profile --json > stats.json  && webpack-bundle-analyzer stats.json dist/lib",
     "test": "jest --no-cache --watchAll",
     "test:ci": "jest --config=jest.config.ci.js",

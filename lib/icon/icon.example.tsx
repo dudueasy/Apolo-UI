@@ -9,4 +9,4 @@ const IconExample: React.FC = () => (
   </div>
 );
 
-export default IconExample
+export default IconExample;

@@ -1,16 +1,16 @@
 import React from 'react';
 import Demo from '../Demo';
-import { ExampleWrapper } from '../ExampleWrappers';
+import {ExampleWrapper} from '../ExampleWrappers';
 import DialogExample from './dialog.example';
 import DialogFnExample from './dialogFn.example';
 
 
-  interface Props {
+interface Props {
   code: string
 }
 
 const DialogDemo: React.FC<Props> = (props) => {
-  return  <>
+  return <>
     <h4>Example for Dialog</h4>
     <Demo code={require('!!raw-loader!./dialog.example.tsx').default}>
       <ExampleWrapper>
@@ -23,7 +23,7 @@ const DialogDemo: React.FC<Props> = (props) => {
         <DialogFnExample/>
       </ExampleWrapper>
     </Demo>
-    </>
+  </>;
 };
 
 export default DialogDemo;

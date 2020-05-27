@@ -1,7 +1,5 @@
 import React from 'react';
 import Demo from '../Demo';
-import {ExampleWrapper} from '../ExampleWrappers';
-import IconExample from '../icon/icon.example';
 import LayoutExample from './layout.example';
 import LayoutWithSider from './layoutWithSider.example';
 import LayoutNestedLayout from './layoutNestedLayout';

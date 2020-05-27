@@ -9,14 +9,14 @@ export interface SuffixToggles {
 
 const scopedClassMaker = (prefix: string) =>
   (suffix?: string | SuffixToggles, options?: ClassOptions) => {
-    return suffix? Object
+    return suffix ? Object
         .entries(typeof suffix === 'string' ? {[suffix]: true} : suffix)
         .filter(kv => kv[0] && kv[1])
         .map(kv => kv[0])
         .map(suffix => [prefix, suffix].join('-'))
-        .concat(options && options.extra? options.extra:[])
+        .concat(options && options.extra ? options.extra : [])
         .join(' ') :
-      prefix
+      prefix;
   };
 
 // filter falsy value out & combine classNames into a string for react components

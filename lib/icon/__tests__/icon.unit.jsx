@@ -22,6 +22,6 @@ describe('Icon Component', () => {
     wrapper.simulate('click');
     wrapper.simulate('click');
 
-    expect(onClick).toHaveBeenCalledTimes(2)
+    expect(onClick).toHaveBeenCalledTimes(2);
   });
 });
