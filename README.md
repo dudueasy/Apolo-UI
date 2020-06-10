@@ -36,7 +36,7 @@ yarn test
 lib/*
 
 ### html 模板
-index.html
+example.html
 
 ### 发布
 dist/lib/
@@ -53,7 +53,7 @@ Webpack + React + TypeScript + Jest & Enzyme 单元测试
 lib/*
 
 ### html 模板
-index.html
+example.html
 
 
 

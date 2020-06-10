@@ -1,7 +1,21 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const baseConfig = require('./webpack.config.base');
+const path = require('path');
 
 const productionConfig = {
   mode: 'production',
+  entry: {
+    ...baseConfig.entry,
+    example: path.join(__dirname, './example.tsx'),
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'ApoloUI',
+      template: 'example.html',
+      favicon: 'favicon.ico',
+      filename: 'example.html'
+    }),
+  ],
   externals:
     {
       react: {
@@ -17,7 +31,7 @@ const productionConfig = {
         root: 'ReactDOM',
       },
     },
-  devtool:'none'
+  devtool: 'none',
 };
 
-module.exports = Object.assign({},baseConfig, productionConfig);
+module.exports = Object.assign({}, baseConfig, productionConfig);

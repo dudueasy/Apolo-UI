@@ -8,9 +8,7 @@ const devConfig = {
     example: path.join(__dirname, './example.tsx'),
   },
   plugins: [
-    // new HtmlWebpackPlugin({title: 'Custom template', template: './index.html'}),
-
-    new HtmlWebpackPlugin({title: 'ApoloUI', template: 'index.html', favicon: 'favicon.ico'}),
+    new HtmlWebpackPlugin({title: 'ApoloUI', template: 'example.html', favicon: 'favicon.ico'}),
   ],
   devServer: {
     host: '0.0.0.0',

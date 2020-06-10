@@ -8,3 +8,4 @@ coverage
 test-results
 yarn.lock
 .DS_Store
+doc
