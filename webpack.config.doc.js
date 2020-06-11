@@ -5,7 +5,7 @@ const path = require('path');
 // 输出示例官网
 const docConfig = {
   output:{
-    path: path.resolve(__dirname, './doc/lib'),
+    path: path.resolve(__dirname, './doc'),
   },
   entry: {
     example: path.resolve(__dirname, './example.tsx'),
