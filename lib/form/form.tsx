@@ -1,4 +1,5 @@
 import React, {ReactFragment} from 'react';
+import { FormErrors } from './validator';
 
 export type FormValue = { [name: string]: string }
 
@@ -8,6 +9,7 @@ interface FormProps {
   buttons: ReactFragment;
   onSubmit: React.FormEventHandler;
   onChange: (value: FormValue) => void;
+  errors: FormErrors;
 }
 
 const Form: React.FC<FormProps> = (props) => {
@@ -17,11 +19,14 @@ const Form: React.FC<FormProps> = (props) => {
   };
 
   const formData = props.value;
+  const {errors} = props;
 
   const onInputChange = (name: string, e: React.ChangeEvent<HTMLInputElement>) => {
     const newFormValue = {...formData, [name]: e.target.value};
     props.onChange(newFormValue);
   };
+
+  console.log('errors: ', errors);
 
   return (
     <form onSubmit={onSubmit}>
@@ -34,6 +39,15 @@ const Form: React.FC<FormProps> = (props) => {
               value={formData[field.name]}
               onChange={onInputChange.bind(null, field.name)}
             />
+            {
+              // 渲染 表单验证错误
+              errors[field.name] &&
+              errors[field.name].map((error) => {
+                return <div style={{color: 'red'}}>
+                  {error}
+                </div>;
+              })
+            }
           </div>;
         })
       }

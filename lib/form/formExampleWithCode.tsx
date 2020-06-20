@@ -2,15 +2,13 @@ import React, {Fragment, useState} from 'react';
 import {ExampleWrapper} from '../ExampleWrappers';
 import Demo from '../DemoWithCode';
 import Form, {FormValue} from './form';
-import Validator from './validator';
-
+import Validator, {hasNoError} from './validator';
 
 interface Props {
   code: string
 }
 
 const FormExampleWithCode: React.FC<Props> = (props) => {
-
   // 表示要渲染的数据
   const [formData, setFormData] = useState<FormValue>({username: '', password: ''});
 
@@ -20,9 +18,7 @@ const FormExampleWithCode: React.FC<Props> = (props) => {
     {name: 'password', label: '密码', input: {type: 'password'}}
   ]);
 
-
-  type X = typeof fields
-
+  const [errors, setErrors] = useState({});
 
   const onSubmit: React.FormEventHandler = (e) => {
     const rules = [
@@ -33,7 +29,10 @@ const FormExampleWithCode: React.FC<Props> = (props) => {
       {key: 'password', minLength: 8, maxLength: 16},
     ];
     const errors = Validator(formData, rules);
-    console.log('errors: ', errors);
+    if (hasNoError(errors)) {
+      // 表示没有错误
+    }
+    setErrors(errors);
   };
 
   return <>
@@ -51,7 +50,7 @@ const FormExampleWithCode: React.FC<Props> = (props) => {
           }
 
           onSubmit={onSubmit}
-
+          errors={errors}
         />
       </ExampleWrapper>
     </Demo>

@@ -10,13 +10,18 @@ interface FormRule {
 
 export type  FormRules = Array<FormRule>
 
-interface FormErrors {
+export interface FormErrors {
   [K: string]: string[]
 }
 
 function isEmpty(value: string): boolean {
   return (value === undefined || value === null || value === '');
 }
+
+export function hasNoError(errors: FormErrors){
+  return Object.keys(errors).length === 0
+}
+
 
 const Validator = (formValue: FormValue, rules: FormRules): FormErrors => {
   const errors: FormErrors = {};
