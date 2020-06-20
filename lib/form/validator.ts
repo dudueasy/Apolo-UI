@@ -19,7 +19,8 @@ function isEmpty(value: string): boolean {
 }
 
 const Validator = (formValue: FormValue, rules: FormRules): FormErrors => {
-  let errors: any = {};
+  const errors: FormErrors = {};
+
   const addError = (key: string, message: string) => {
     if (errors[key] === undefined) {
       errors[key] = [];
@@ -27,12 +28,12 @@ const Validator = (formValue: FormValue, rules: FormRules): FormErrors => {
     errors[key].push(message);
   };
 
-  rules.map((rule, index) => {
+  rules.forEach((rule, index) => {
     const value = formValue[rule.key];
-    if (rule.required && isEmpty(value)) {
-      addError(rule.key, '必填');
-    }
 
+    if (rule.required && isEmpty(value)) {
+      addError(rule.key, '不能为空');
+    }
     if (rule.minLength && !isEmpty(value) && value.length < rule.minLength) {
       addError(rule.key, '太短');
     }
@@ -41,10 +42,8 @@ const Validator = (formValue: FormValue, rules: FormRules): FormErrors => {
       addError(rule.key, '太长');
     }
 
-    if (rule.pattern && !isEmpty(value)) {
-      if (!rule.pattern.test(value)) {
-        addError(rule.key, '格式不正确');
-      }
+    if (rule.pattern && !isEmpty(value) && !rule.pattern.test(value)) {
+      addError(rule.key, '格式不正确');
     }
   });
 
