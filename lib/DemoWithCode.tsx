@@ -26,7 +26,7 @@ const SourceCodeWrapper = styled.div`
   transition: ALL 0.5s;
 `;
 
-const Demo: React.FC<Props> = (props) => {
+const DemoWithCode: React.FC<Props> = (props) => {
   const {children, code} = props;
   const [sourceCodeVisible, toggleSourceCodeVisible] = useState<boolean>(false);
 
@@ -34,7 +34,7 @@ const Demo: React.FC<Props> = (props) => {
     <>
       <div>{children} </div>
       <div style={{marginBottom: 16, marginTop: 16}}>
-        <button onClick={(e) => toggleSourceCodeVisible(!sourceCodeVisible)}> 显示源码</button>
+        <button onClick={(e) => toggleSourceCodeVisible(!sourceCodeVisible)}>显示源码</button>
       </div>
       {sourceCodeVisible &&
       <SourceCodeWrapper>
@@ -58,4 +58,4 @@ const Demo: React.FC<Props> = (props) => {
   );
 };
 
-export default Demo;
+export default DemoWithCode;
