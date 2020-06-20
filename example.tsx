@@ -7,6 +7,7 @@ import logo from './logo.png';
 import IconDemo from './lib/icon/iconExampleWithCode';
 import DialogDemo from './lib/dialog/dialogExampleWithCode';
 import LayoutDemo from './lib/layout/layoutExampleWithCode';
+import FormDemo from './lib/form/formExampleWithCode';
 
 interface routerMatch {
   [key: string]: any
@@ -27,6 +28,7 @@ const Home = () => (
           <li><NavLink to="/icon"> Icon </NavLink></li>
           <li><NavLink to="/dialog"> Dialog </NavLink></li>
           <li><NavLink to="/layout"> Layout </NavLink></li>
+          <li><NavLink to="/form"> Form </NavLink></li>
         </ul>
       </Sider>
       <Layout>
@@ -35,6 +37,7 @@ const Home = () => (
             <Route path="/icon" component={IconDemo}/>
             <Route path="/dialog" component={DialogDemo}/>
             <Route path="/layout" component={LayoutDemo}/>
+            <Route path="/form" component={FormDemo}/>
           </Switch>
         </Content>
       </Layout>
