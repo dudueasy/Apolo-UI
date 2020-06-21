@@ -15,7 +15,7 @@ const FormExampleWithCode: React.FC<Props> = (props) => {
   // 表示要渲染的字段
   const [fields] = useState([
     {name: 'username', label: '用户名', input: {type: 'text'}},
-    {name: 'password', label: '密码', input: {type: 'password'}}
+    {name: 'password', label: '密码', input: {type: 'password'}},
   ]);
 
   const [errors, setErrors] = useState({});
@@ -37,7 +37,7 @@ const FormExampleWithCode: React.FC<Props> = (props) => {
 
   return <>
     <h4>Example for Form</h4>
-    <Demo code={require('!!raw-loader!./form.tsx').default}>
+    <Demo code={require('!!raw-loader!./formExampleWithCode.tsx').default}>
       <ExampleWrapper>
         <Form
           onChange={(newValue) => setFormData(newValue)}

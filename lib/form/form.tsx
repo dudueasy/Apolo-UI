@@ -1,5 +1,8 @@
-import React, {ReactFragment} from 'react';
-import { FormErrors } from './validator';
+import React, {Fragment, ReactFragment} from 'react';
+import {FormErrors} from './validator';
+import Input from '../input/input';
+import {scopedClassMaker} from '../utils/className';
+import './form.scss';
 
 export type FormValue = { [name: string]: string }
 
@@ -26,31 +29,42 @@ const Form: React.FC<FormProps> = (props) => {
     props.onChange(newFormValue);
   };
 
-  console.log('errors: ', errors);
+  const sc = scopedClassMaker('apolo-ui-form');
 
   return (
     <form onSubmit={onSubmit}>
-      {
-        props.fields.map(field => {
-          return <div key={field.name}>
-            {field.label}
-            <input
-              type={field.input.type}
-              value={formData[field.name]}
-              onChange={onInputChange.bind(null, field.name)}
-            />
+      <table>
+        {props.fields.map(field => {
+          return <Fragment>
+            <tr className={sc('tr')}>
+              <td className={sc('td')}>
+                <span> {field.label} </span>
+              </td>
+
+              <td className={sc('td')}>
+                <Input
+                  type={field.input.type}
+                  value={formData[field.name]}
+                  onChange={onInputChange.bind(null, field.name)}
+                />
+              </td>
+            </tr>
             {
               // 渲染 表单验证错误
               errors[field.name] &&
               errors[field.name].map((error) => {
-                return <div style={{color: 'red'}}>
-                  {error}
-                </div>;
+                return <tr>
+                  <td/>
+                  <td className={sc('error')}>
+                    {error}
+                  </td>
+                </tr>;
               })
             }
-          </div>;
+          </Fragment>;
         })
-      }
+        }
+      </table>
       {props.buttons}
     </form>
   );
