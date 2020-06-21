@@ -12,6 +12,7 @@ const ExampleWrapper: React.FC<Props> = (props) => {
       style={{
         border: '1px solid rgba(0,0,0,0.1)',
         padding: 8,
+        marginTop: 16,
         marginBottom: 16
       }}
     >

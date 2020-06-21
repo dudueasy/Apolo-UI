@@ -64,8 +64,13 @@ const Form: React.FC<FormProps> = (props) => {
           </Fragment>;
         })
         }
+        <tr>
+          <td className={sc('td')}/>
+          <td className={sc('td')}>
+            {props.buttons}
+          </td>
+        </tr>
       </table>
-      {props.buttons}
     </form>
   );
 };

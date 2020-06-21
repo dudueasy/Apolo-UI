@@ -1,0 +1,59 @@
+@import '../helper';
+.apolo-ui-button {
+  cursor: pointer;
+  padding: 4px 16px;
+  line-height: 22px;
+  transition: all 250ms;
+  &:focus {
+    outline: none;
+  }
+  &-normal {
+    color: #333;
+    border: 1px solid lighten(#333, 50);
+    background: white;
+    &:hover, &:focus {
+      color: $main-color;
+      border-color: $main-color;
+    }
+  }
+
+  &-important {
+    color: white;
+    border: 1px solid $main-color;
+    background: $main-color;
+    &:hover, &:focus {
+      border-color: lighten($main-color, 10%);
+      background: lighten($main-color, 10%);
+    }
+  }
+  &-danger {
+    color: #333;
+    border: 1px solid lighten(#333, 50);
+    background: white;
+    &:hover, &:focus {
+      color: $main-color;
+      border-color: $main-color;
+    }
+    &:focus {
+      color: $main-color;
+      outline: none;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

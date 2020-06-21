@@ -1,8 +1,10 @@
-import React, {Fragment, useState} from 'react';
+import React, {useState} from 'react';
 import {ExampleWrapper} from '../ExampleWrappers';
 import Demo from '../DemoWithCode';
 import Form, {FormValue} from './form';
 import Validator, {hasNoError} from './validator';
+import Button from '../button/button';
+
 
 interface Props {
   code: string
@@ -36,7 +38,7 @@ const FormExampleWithCode: React.FC<Props> = (props) => {
   };
 
   return <>
-    <h4>Example for Form</h4>
+    <h3>Example for Form</h3>
     <Demo code={require('!!raw-loader!./formExampleWithCode.tsx').default}>
       <ExampleWrapper>
         <Form
@@ -44,17 +46,21 @@ const FormExampleWithCode: React.FC<Props> = (props) => {
           value={formData}
           fields={fields}
           buttons={
-            <Fragment>
-              <button type={'submit'}>提交</button>
-            </Fragment>
+            <div>
+              <Button type={'submit'}>提交</Button>
+              <Button level={'important'}>返回</Button>
+            </div>
           }
-
           onSubmit={onSubmit}
           errors={errors}
         />
       </ExampleWrapper>
     </Demo>
   </>;
+};
+
+Button.defaultProps = {
+  level: 'normal'
 };
 
 export default FormExampleWithCode;

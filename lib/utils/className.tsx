@@ -2,7 +2,6 @@ export interface ClassOptions {
   extra?: string
 }
 
-// {xxx: true, yy: false, zz: true}
 export interface SuffixToggles {
   [k: string]: boolean
 }
