@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import HighLight, {defaultProps} from 'prism-react-renderer';
 import styled from 'styled-components';
+import Button from './button/button';
 
 interface Props {code: string}
 
@@ -34,7 +35,9 @@ const DemoWithCode: React.FC<Props> = (props) => {
     <>
       <div>{children} </div>
       <div style={{marginBottom: 16, marginTop: 16}}>
-        <button onClick={(e) => toggleSourceCodeVisible(!sourceCodeVisible)}>显示源码</button>
+        <Button onClick={(e) => toggleSourceCodeVisible(!sourceCodeVisible)}
+                level={'important'}
+        >显示源码</Button>
       </div>
       {sourceCodeVisible &&
       <SourceCodeWrapper>

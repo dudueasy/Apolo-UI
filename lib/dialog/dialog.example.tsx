@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Dialog from './dialog';
+import Button from '../button/button';
 
 interface Props {}
 
@@ -8,19 +9,19 @@ const DialogExample: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <button onClick={() => {toggleVisible((visible) => (!visible));}}>
+      <Button onClick={() => {toggleVisible((visible) => (!visible));}}>
         toggleDialog
-      </button>
+      </Button>
       <Dialog
         visible={visible}
         onClose={() => { toggleVisible(false);}}
         buttons={[
-          <button onClick={() => {toggleVisible(false);}}>
+          <Button onClick={() => {toggleVisible(false);}}>
             cancel
-          </button>,
-          <button onClick={() => {toggleVisible(false);}}>
+          </Button>,
+          <Button onClick={() => {toggleVisible(false);}}>
             ok
-          </button>
+          </Button>
         ]}
       >11111</Dialog>
     </div>

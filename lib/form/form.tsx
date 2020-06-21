@@ -33,12 +33,12 @@ const Form: React.FC<FormProps> = (props) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <table>
+      <table className={sc('table')}>
         {props.fields.map(field => {
           return <Fragment>
             <tr className={sc('tr')}>
               <td className={sc('td')}>
-                <span> {field.label} </span>
+                <span className={sc('label')}> {field.label} </span>
               </td>
 
               <td className={sc('td')}>
@@ -47,20 +47,15 @@ const Form: React.FC<FormProps> = (props) => {
                   value={formData[field.name]}
                   onChange={onInputChange.bind(null, field.name)}
                 />
+                <div className={sc('error')}>
+                  {
+                    errors[field.name] ?
+                      errors[field.name].join('，') :
+                      <span>&nbsp;</span>
+                  }
+                </div>
               </td>
             </tr>
-            {
-              // 渲染 表单验证错误
-              errors[field.name] &&
-              errors[field.name].map((error) => {
-                return <tr>
-                  <td/>
-                  <td className={sc('error')}>
-                    {error}
-                  </td>
-                </tr>;
-              })
-            }
           </Fragment>;
         })
         }

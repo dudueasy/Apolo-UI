@@ -1,23 +1,24 @@
 import React from 'react';
 import Dialog from './dialog';
+import Button from '../button/button';
 
 interface Props {}
 
 const DialogFnExample: React.FC<Props> = (props) => {
   return <>
     <div>
-      <button onClick={() => {
+      <Button onClick={() => {
         Dialog.alert({
           title: 'alert demo',
           content: 'Dialog.alert',
         });
       }
       }>alert
-      </button>
+      </Button>
     </div>
 
     <div>
-      <button onClick={() => {
+      <Button onClick={() => {
         Dialog.confirm({
           title: 'confirm demo',
           content: 'Dialog.confirm',
@@ -26,16 +27,16 @@ const DialogFnExample: React.FC<Props> = (props) => {
         });
       }}>
         confirm
-      </button>
+      </Button>
     </div>
 
     <div>
-      <button onClick={() => {
+      <Button onClick={() => {
         const onClose = Dialog.modal({
           content: (
             <>
               <h1>Dialog.modal</h1>
-              <button onClick={() => {onClose();}}>close Modal</button>
+              <Button onClick={() => {onClose();}}>close Modal</Button>
             </>
           ),
           title: <h4>Modal Example</h4>
@@ -43,7 +44,7 @@ const DialogFnExample: React.FC<Props> = (props) => {
       }}
       >
         modal
-      </button>
+      </Button>
     </div>
   </>;
 };

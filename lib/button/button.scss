@@ -4,6 +4,17 @@
   padding: 4px 16px;
   line-height: 22px;
   transition: all 250ms;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin: 0 4px;
+  font-size: 14px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
   &:focus {
     outline: none;
   }
@@ -16,7 +27,6 @@
       border-color: $main-color;
     }
   }
-
   &-important {
     color: white;
     border: 1px solid $main-color;
