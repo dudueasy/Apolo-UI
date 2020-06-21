@@ -1,13 +1,24 @@
 .apolo-ui-form {
+  &-table {
+    border-collapse: collapse;
+  }
   &-td {
     padding-top: 0;
-    padding-bottom: 32px;
+    padding-bottom: 8px;
+    vertical-align: top;
+  }
+  &-label {
+    line-height: 32px;
+  }
+  &-tr:last-child &-td {
+    padding-bottom: 0;
   }
   &-td + &-td {
     padding-left: 16px;
   }
   &-error {
-    padding-left: 16px;
     color: red;
+    font-size: 0.8em;
+    margin-top: 4px;
   }
 }
