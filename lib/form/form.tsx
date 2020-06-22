@@ -1,4 +1,4 @@
-import React, {Fragment, ReactFragment} from 'react';
+import React, {ReactFragment} from 'react';
 import {FormErrors} from './validator';
 import Input from '../input/input';
 import {scopedClassMaker} from '../utils/className';
@@ -13,6 +13,7 @@ interface FormProps {
   onSubmit: React.FormEventHandler;
   onChange: (value: FormValue) => void;
   errors: FormErrors;
+  errorDisplayMode?: 'single' | 'all'
 }
 
 const Form: React.FC<FormProps> = (props) => {
@@ -34,29 +35,30 @@ const Form: React.FC<FormProps> = (props) => {
   return (
     <form onSubmit={onSubmit}>
       <table className={sc('table')}>
+        <tbody>
         {props.fields.map(field => {
-          return <Fragment>
-            <tr className={sc('tr')}>
-              <td className={sc('td')}>
-                <span className={sc('label')}> {field.label} </span>
-              </td>
+          return <tr className={sc('tr')} key={field.name}>
+            <td className={sc('td')}>
+              <span className={sc('label')}> {field.label} </span>
+            </td>
 
-              <td className={sc('td')}>
-                <Input
-                  type={field.input.type}
-                  value={formData[field.name]}
-                  onChange={onInputChange.bind(null, field.name)}
-                />
-                <div className={sc('error')}>
-                  {
-                    errors[field.name] ?
-                      errors[field.name].join('，') :
-                      <span>&nbsp;</span>
-                  }
-                </div>
-              </td>
-            </tr>
-          </Fragment>;
+            <td className={sc('td')}>
+              <Input
+                type={field.input.type}
+                value={formData[field.name]}
+                onChange={onInputChange.bind(null, field.name)}
+              />
+              <div className={sc('error')}>
+                {
+                  errors[field.name] ?
+                    (props.errorDisplayMode === 'single' ?
+                      errors[field.name][0] :
+                      errors[field.name].join('，')) :
+                    <span>&nbsp;</span>
+                }
+              </div>
+            </td>
+          </tr>;
         })
         }
         <tr>
@@ -65,9 +67,14 @@ const Form: React.FC<FormProps> = (props) => {
             {props.buttons}
           </td>
         </tr>
+        </tbody>
       </table>
     </form>
   );
+};
+
+Form.defaultProps = {
+  errorDisplayMode: 'single'
 };
 
 export default Form;

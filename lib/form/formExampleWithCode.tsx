@@ -42,6 +42,7 @@ const FormExampleWithCode: React.FC<Props> = (props) => {
     <Demo code={require('!!raw-loader!./formExampleWithCode.tsx').default}>
       <ExampleWrapper>
         <Form
+          errorDisplayMode={'all'}
           onChange={(newValue) => setFormData(newValue)}
           value={formData}
           fields={fields}
