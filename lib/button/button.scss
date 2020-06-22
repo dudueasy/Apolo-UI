@@ -8,7 +8,6 @@
   border-radius: 4px;
   margin: 0 4px;
   font-size: 14px;
-
   &:first-child {
     margin-left: 0;
   }
@@ -37,15 +36,14 @@
     }
   }
   &-danger {
-    color: #333;
-    border: 1px solid lighten(#333, 50);
-    background: white;
+    color: white;
+    border: 1px solid red;
+    background: red;
     &:hover, &:focus {
-      color: $main-color;
-      border-color: $main-color;
+      border-color: lighten(red, 20%);
+      background: lighten(red, 20%);
     }
     &:focus {
-      color: $main-color;
       outline: none;
     }
   }
