@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-yarn doc
 git checkout gh-pages
 mv -f doc/* .
 git add .
