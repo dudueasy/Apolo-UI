@@ -8,6 +8,7 @@
     vertical-align: top;
   }
   &-label {
+    //  通过 line-height 和 input 保持一样高度
     line-height: 32px;
   }
   &-tr:last-child &-td {

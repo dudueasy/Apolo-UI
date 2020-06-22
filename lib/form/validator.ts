@@ -71,42 +71,31 @@ const Validator = (
     }
   });
 
-  console.log(errors);
-  const xx = Object.keys(errors).map((key) => {
+  const flattenValidationErrors = flat(Object.keys(errors).map((key) => {
     return errors[key].map((validationError) => {
       return [key, validationError];
-    }); // [p1, p2, m3]
+    });
+  }));
 
-  });
-
-  console.log('xx: ', xx);
-  const y = flat(xx);
-  const promiseList = y.map(([key, validationError]) => {
-    // 返回一个永远不会 reject 的 promise , 接下来才用以可 Promise.all() 来玩
+  const promisifiedList = flattenValidationErrors.map(([key, validationError]) => {
     return typeof validationError === 'string' ?
+      // 返回一个 resolved 的 promise, 接下来才用以可 Promise.all() 来玩
       Promise.resolve([key, validationError]) :
+
+      // 返回一个永远不会 reject 的 promise , 接下来才用以可 Promise.all() 来玩
       validationError.then(
-        (a) => { return [key, undefined];},
+        (T: any) => { return [key, undefined];},
         (reason) => { return [key, reason]; }
-      )
-      ;
+      );
   });
 
-  console.log(promiseList);
-  Promise.all(promiseList).then((errorList: [string, string][]) => {
-    console.log(errorList);
-
-    const formErrors: FormErrors = errorList.filter(([key, message]) => {
+  // 在 promise.all 中 提供参数给 callback
+  Promise.all(promisifiedList).then((errorList: [string, string][]) => {
+    const formErrorsStringList = errorList.filter(([key, message]) => {
       return message;
-    }).reduce<FormErrors>((accumulator, [key, message]) => {
-      if (!accumulator[key]) {
-        accumulator[key] = [];
-      }
-      accumulator[key].push(message);
-      return accumulator;
-    }, {});
+    });
 
-    console.log('formErrors: ', formErrors);
+    const formErrors = zip(formErrorsStringList);
     callback(formErrors);
   });
 };
@@ -123,6 +112,20 @@ function flat<T>(array: ArrayLike<T[] | T>): Array<T> {
     }
   }
   return result;
+}
+
+/**
+ *  [[name,'apolo'], [name, 'alex' ], [age, 18]] =>  {name: ['apolo', 'alex'], age: [18]}
+ */
+function zip(array: Array<[string, string]>): Record<string, string[]> {
+  return array.reduce<Record<string, any>>(
+    (container, [key, value]) => {
+      if (!container[key]) {
+        container[key] = [];
+      }
+      container[key].push(value);
+      return container;
+    }, {});
 }
 
 export default Validator;

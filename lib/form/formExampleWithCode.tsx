@@ -11,7 +11,7 @@ const usernames = ['frank', 'jack', 'alice', 'bob'];
 const checkUserName = (username: string, success: (value?: any) => void, fail: (reason: any) => void) => {
   setTimeout(() => {
     if (!usernames.includes(username)) {
-      return success();
+      return success('yes');
     }
     return fail('用户名已存在');
   }, 1000);
