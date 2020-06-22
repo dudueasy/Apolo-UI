@@ -1,10 +1,10 @@
 import React, {ReactFragment} from 'react';
-import {FormErrors} from './validator';
 import Input from '../input/input';
 import {scopedClassMaker} from '../utils/className';
 import './form.scss';
 
-export type FormValue = { [name: string]: string }
+export type FormValue = { [name: string]: string };
+export type FormErrors = { [K: string]: string[] };
 
 interface FormProps {
   value: FormValue;
@@ -14,7 +14,9 @@ interface FormProps {
   onChange: (value: FormValue) => void;
   errors: FormErrors;
   errorDisplayMode?: 'single' | 'all'
+  transformErrors?: Record<string, string>
 }
+
 
 const Form: React.FC<FormProps> = (props) => {
   const onSubmit: React.FormEventHandler = (e) => {
@@ -31,6 +33,20 @@ const Form: React.FC<FormProps> = (props) => {
   };
 
   const sc = scopedClassMaker('apolo-ui-form');
+
+  const transformErrors = (message: string) => {
+    enum internalTransformErrorEnum {
+      required = '必填',
+      minLength = '太短了',
+      maxLength = '太长了',
+    }
+
+    const transFormErrorEnum = {...internalTransformErrorEnum, ...props.transformErrors};
+
+    // 将预设的 ErrorEnum 和用户传入的 ErrorEnum 合并
+    return transFormErrorEnum[(message as keyof typeof transFormErrorEnum)] || '未知错误';
+  };
+
 
   return (
     <form onSubmit={onSubmit}>
@@ -52,8 +68,8 @@ const Form: React.FC<FormProps> = (props) => {
                 {
                   errors[field.name] ?
                     (props.errorDisplayMode === 'single' ?
-                      errors[field.name][0] :
-                      errors[field.name].join('，')) :
+                      transformErrors!(errors[field.name][0]) :
+                      errors[field.name].map(transformErrors!).join('，')) :
                     <span>&nbsp;</span>
                 }
               </div>
@@ -73,8 +89,9 @@ const Form: React.FC<FormProps> = (props) => {
   );
 };
 
+
 Form.defaultProps = {
-  errorDisplayMode: 'single'
+  errorDisplayMode: 'single',
 };
 
 export default Form;
