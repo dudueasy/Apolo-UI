@@ -45,10 +45,8 @@ const FormExampleWithCode: React.FC<Props> = (props) => {
       {key: 'username', minLength: 8, maxLength: 16},
       {key: 'username', pattern: /^[a-zA-Z0-9]+$/},
       {key: 'username', validator},
-      {key: 'username', validator},
       {key: 'password', required: true},
       {key: 'password', minLength: 8, maxLength: 16},
-      {key: 'password', validator},
       {key: 'password', validator},
     ];
 

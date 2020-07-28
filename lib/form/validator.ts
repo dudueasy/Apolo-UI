@@ -71,29 +71,31 @@ const Validator = (
     }
   });
 
+  // 两层数组拍平
   const flattenValidationErrors = flat(Object.keys(errors).map((key) => {
-    return errors[key].map((validationError) => {
+    return errors[key].map<[string, ValidationError]>((validationError) => {
       return [key, validationError];
     });
   }));
 
   const promisifiedList = flattenValidationErrors.map(([key, validationError]) => {
-    return typeof validationError === 'string' ?
-      // 返回一个 resolved 的 promise, 接下来才用以可 Promise.all() 来玩
-      Promise.resolve([key, validationError]) :
+    const promise = validationError instanceof Promise ?
+      validationError :
+      Promise.reject(validationError);
 
-      // 返回一个永远不会 reject 的 promise , 接下来才用以可 Promise.all() 来玩
-      validationError.then(
-        (T: any) => { return [key, undefined];},
-        (reason) => { return [key, reason]; }
-      );
+    return promise.then<[string, undefined], [string, string]>(
+      () => [key, undefined],
+      (reason) => [key, reason],
+    );
   });
 
+  function hasError(item: [string, undefined] | [string, string]): item is [string, string] {
+    return item[1] !== undefined
+  }
+
   // 在 promise.all 中 提供参数给 callback
-  Promise.all(promisifiedList).then((errorList: [string, string][]) => {
-    const formErrorsStringList = errorList.filter(([key, message]) => {
-      return message;
-    });
+  Promise.all(promisifiedList).then((errorList) => {
+    const formErrorsStringList = errorList.filter(hasError); //类型守卫函数
 
     const formErrors = zip(formErrorsStringList);
     callback(formErrors);
@@ -101,14 +103,14 @@ const Validator = (
 };
 
 // 用来拍平二维数组
-function flat<T>(array: ArrayLike<T[] | T>): Array<T> {
+function flat<T>(array: Array<T[] | T>): Array<T> {
   const result: T[] = [];
 
   for (let i = 0; i < array.length; i++) {
     if (array[i] instanceof Array) {
-      result.push(...(array as ArrayLike<T[]>) [i]);
+      result.push(...array[i] as T[]);
     } else {
-      result.push((array as ArrayLike<T>)[i]);
+      result.push(array[i] as T);
     }
   }
   return result;
