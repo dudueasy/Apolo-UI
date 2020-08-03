@@ -32,7 +32,7 @@ const Form: React.FC<FormProps> = (props) => {
     props.onChange(newFormValue);
   };
 
-  const sc = scopedClassMaker('apolo-ui-form');
+  const sc = scopedClassMaker('apoloUI-form');
 
   const transformErrors = (message: string) => {
     enum internalTransformErrorEnum {

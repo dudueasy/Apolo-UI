@@ -8,11 +8,11 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: React.FC<Props> = (props) => {
   const {children, className, level = 'normal', ...rest} = props;
-  const sc = scopedClassMaker('apolo-ui-button');
+  const sc = scopedClassMaker('apoloUI-button');
   return (
     <button
       className={
-        combineClassNames('apolo-ui-button', `apolo-ui-button-${level}`, className)
+        combineClassNames('apoloUI-button', `apoloUI-button-${level}`, className)
       }
       {...rest}
     >{children}

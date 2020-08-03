@@ -8,7 +8,7 @@ const Input: React.FC<Props> = (props) => {
   const {className, ...rest} = props;
   return (
     <input
-      className={combineClassNames('apolo-ui-input', className)}
+      className={combineClassNames('apoloUI-input', className)}
       {...rest}
     />
   );
