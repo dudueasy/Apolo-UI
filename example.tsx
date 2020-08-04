@@ -8,6 +8,7 @@ import IconDemo from './lib/icon/iconExampleWithCode';
 import DialogDemo from './lib/dialog/dialogExampleWithCode';
 import LayoutDemo from './lib/layout/layoutExampleWithCode';
 import FormDemo from './lib/form/formExampleWithCode';
+import ScrollExample from './lib/scroll/scroll.example';
 
 interface routerMatch {
   [key: string]: any
@@ -29,6 +30,7 @@ const Home = () => (
           <li><NavLink to="/dialog"> Dialog </NavLink></li>
           <li><NavLink to="/layout"> Layout </NavLink></li>
           <li><NavLink to="/form"> Form </NavLink></li>
+          <li><NavLink to="/scroll"> Scroll </NavLink></li>
         </ul>
       </Sider>
       <Layout>
@@ -38,6 +40,7 @@ const Home = () => (
             <Route path="/dialog" component={DialogDemo}/>
             <Route path="/layout" component={LayoutDemo}/>
             <Route path="/form" component={FormDemo}/>
+            <Route path="/scroll" component={ScrollExample}/>
           </Switch>
         </Content>
       </Layout>
