@@ -1,13 +1,29 @@
-.apoloUI-scroll{
+.apoloUI-scroll {
   position: relative;
   overflow: hidden;
-
-  &-inner{
-    border: 1px blue solid;
+  border: 1px blue solid;
+  &-inner {
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     bottom: 0;
-    overflow:scroll;
+    overflow: scroll;
+  }
+  &-track {
+    border: 1px solid red;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+  }
+
+  &-scrollBar {
+    background: pink;
+    height: 20px;
+    border-radius: 2px;
+    width: 10px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
   }
 }
