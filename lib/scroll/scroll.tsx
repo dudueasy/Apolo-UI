@@ -30,7 +30,7 @@ const Scroll: React.FC<ScrollProps> = (props) => {
     const viewHeight = current.clientHeight;
     const scrollTop = current.scrollTop;
 
-    setBarTop(barHeight * scrollTop / viewHeight);
+    setBarTop(scrollTop * barHeight / viewHeight);
   };
 
   return (
