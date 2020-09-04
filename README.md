@@ -2,8 +2,8 @@
 [![CircleCI](https://circleci.com/gh/dudueasy/Apolo-UI/tree/master.svg?style=svg)](https://circleci.com/gh/dudueasy/Apolo-UI/tree/master)
 [![npm version](https://badge.fury.io/js/apolo-ui-test.svg)](https://badge.fury.io/js/apolo-ui-test)
  
- 一个 React UI 组件库.(🔨🔨 UNDER CONSTRUCTION 🔨🔨)
- 
+React UI 组件库
+
 # 分支 
 ### master
 [主要分支](https://github.com/dudueasy/Apolo-UI ), 集成所有开发记录和配置
