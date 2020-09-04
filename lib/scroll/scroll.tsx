@@ -55,14 +55,22 @@ const Scroll: React.FC<ScrollProps> = (props) => {
 
   const onMouseDownBar = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     draggingRef.current = true;
-    initialClientYRef.current = e.screenY;
+    initialClientYRef.current = e.clientY;
+
+    // 每次拖拽开始时, 才更新 initialBarTopRef, 即拖拽的起点
     initialBarTopRef.current = barTop;
   };
 
   const onMouseMove = (e: MouseEvent) => {
+    const delta = e.clientY - initialClientYRef.current;
     if (draggingRef.current) {
-      const delta = e.screenY - initialClientYRef.current;
+      // change barTop
       setBarTop(initialBarTopRef.current + delta);
+
+      // change container's scrollTop
+      if (containerRef.current) {
+        containerRef.current.scrollTop = (initialBarTopRef.current + delta) * containerRef.current.scrollHeight / containerRef.current.clientHeight;
+      }
     }
   };
 
@@ -71,13 +79,20 @@ const Scroll: React.FC<ScrollProps> = (props) => {
   };
 
 
+  const onSelectStart = (e: Event) => {
+    // 只有 滚动条被拖动的时候, 才阻止事件的行为
+    if (draggingRef.current) e.preventDefault();
+  };
+
   useEffect(() => {
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
+    window.addEventListener('selectstart', onSelectStart);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
+      window.removeEventListener('selectstart', onSelectStart);
     };
   }, []);
 
