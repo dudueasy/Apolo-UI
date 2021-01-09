@@ -4,7 +4,7 @@ import Icon from '../icon';
 import {shallow} from 'enzyme';
 
 
-describe('Icon Component', () => {
+describe('Icon FormExample', () => {
   it('should render properly', () => {
     const IconProps = {name: 'qq'};
     const IconSnapshot = renderer.create(<Icon {...IconProps}/>).toJSON();
