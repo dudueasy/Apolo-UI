@@ -28,7 +28,7 @@ const Scroll: React.FC<ScrollProps> = (props) => {
         return;
       }
       _setBarTop(barTop + distance);
-    }, [barHeight]
+    }, [barTop]
   );
 
 
