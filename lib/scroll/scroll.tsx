@@ -2,7 +2,9 @@ import React, {HTMLAttributes, UIEventHandler, useCallback, useEffect, useLayout
 import combineClassNames, {scopedClassMaker} from '../utils/className';
 import './style.scss';
 
-interface ScrollProps extends HTMLAttributes<HTMLDivElement> {};
+interface ScrollProps extends HTMLAttributes<HTMLDivElement> {
+ className: string
+}
 
 const sc = scopedClassMaker('apoloUI-scroll');
 
@@ -20,20 +22,19 @@ const Scroll: React.FC<ScrollProps> = (props) => {
   }, [barTop]);
 
   const _setBarTop = useCallback((_barTop: number) => {
-      const scrollHeight = containerRef!.current!.scrollHeight;
-      const clientHeight = containerRef!.current!.clientHeight;
-      const maxBarTop = (scrollHeight - clientHeight) * clientHeight / scrollHeight;
+      const scrollHeight = containerRef?.current?.scrollHeight;
+      const clientHeight = containerRef?.current?.clientHeight;
 
-      console.log('scrollHeight: ', scrollHeight);
-      console.log('clientHeight: ', clientHeight);
-
-      if (_barTop < 0) {
-        return;
+      if(scrollHeight && clientHeight ) {
+        const maxBarTop = (scrollHeight - clientHeight) * clientHeight / scrollHeight;
+        if (_barTop < 0) {
+          return;
+        }
+        if ( _barTop > maxBarTop) {
+          return;
+        }
+        setBarTop(_barTop);
       }
-      if ( _barTop > maxBarTop) {
-        return;
-      }
-      setBarTop(_barTop);
     }, []
   );
 
@@ -67,7 +68,7 @@ const Scroll: React.FC<ScrollProps> = (props) => {
     initialBarTopRef.current = barTop;
   };
 
-  const onMouseMove = (e: MouseEvent) => {
+  const onMouseMove = useCallback((e: MouseEvent) => {
     const delta = e.clientY - initialClientYRef.current;
 
     if (draggingRef.current) {
@@ -81,7 +82,7 @@ const Scroll: React.FC<ScrollProps> = (props) => {
         containerRef.current.scrollTop = (initialBarTopRef.current + delta) * scrollHeight / clientHeight;
       }
     }
-  };
+  },[_setBarTop])
 
   const onMouseUp = (e: MouseEvent) => {
     draggingRef.current = false;
@@ -103,7 +104,7 @@ const Scroll: React.FC<ScrollProps> = (props) => {
       window.removeEventListener('mouseup', onMouseUp);
       window.removeEventListener('selectstart', onSelectStart);
     };
-  }, []);
+  }, [onMouseMove]);
 
   return (
     <div
