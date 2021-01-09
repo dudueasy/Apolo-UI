@@ -14,38 +14,44 @@ const Scroll: React.FC<ScrollProps> = (props) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [barHeight, setBarHeight] = useState(0);
-  const [barTop, _setBarTop] = useState(0);
+  const [barTop, setBarTop] = useState(0);
+  useEffect(() => {
+    console.log('barTop: ', barTop);
+  }, [barTop]);
 
-  const setBarTop = useCallback((distance: number) => {
+  const _setBarTop = useCallback((_barTop: number) => {
       const scrollHeight = containerRef!.current!.scrollHeight;
-      const viewHeight = containerRef!.current!.clientHeight;
-      const maxBarTop = (scrollHeight - viewHeight) * viewHeight / scrollHeight;
+      const clientHeight = containerRef!.current!.clientHeight;
+      const maxBarTop = (scrollHeight - clientHeight) * clientHeight / scrollHeight;
 
-      if (distance < 0) {
+      console.log('scrollHeight: ', scrollHeight);
+      console.log('clientHeight: ', clientHeight);
+
+      if (_barTop < 0) {
         return;
       }
-      if (distance > maxBarTop) {
+      if ( _barTop > maxBarTop) {
         return;
       }
-      _setBarTop(barTop + distance);
-    }, [barTop]
+      setBarTop(_barTop);
+    }, []
   );
 
 
   useLayoutEffect(() => {
-    const scrollHeight = containerRef!.current!.scrollHeight;
-    const viewHeight = containerRef!.current!.clientHeight;
-    setBarHeight(viewHeight * viewHeight / scrollHeight);
+    const scrollHeight = containerRef?.current?.scrollHeight;
+    const clientHeight = containerRef?.current?.clientHeight;
+    if (scrollHeight && clientHeight) setBarHeight(clientHeight * clientHeight / scrollHeight);
   }, []);
 
-  // 得到每次滚动的距离
+  // const
   const onScroll: UIEventHandler<HTMLDivElement> = (e) => {
-    let current = containerRef.current!;
+    const current = containerRef.current!;
     const scrollHeight = current.scrollHeight;
-    const viewHeight = current.clientHeight;
+    const clientHeight = current.clientHeight;
     const scrollTop = current.scrollTop;
 
-    setBarTop(scrollTop * barHeight / viewHeight);
+    _setBarTop(scrollTop * barHeight / clientHeight);
   };
 
   const draggingRef = useRef(false);
@@ -63,13 +69,16 @@ const Scroll: React.FC<ScrollProps> = (props) => {
 
   const onMouseMove = (e: MouseEvent) => {
     const delta = e.clientY - initialClientYRef.current;
+
     if (draggingRef.current) {
       // change barTop
-      setBarTop(initialBarTopRef.current + delta);
+      _setBarTop(initialBarTopRef.current + delta);
 
       // change container's scrollTop
       if (containerRef.current) {
-        containerRef.current.scrollTop = (initialBarTopRef.current + delta) * containerRef.current.scrollHeight / containerRef.current.clientHeight;
+        const clientHeight = containerRef.current.clientHeight;
+        const scrollHeight = containerRef?.current?.scrollHeight;
+        containerRef.current.scrollTop = (initialBarTopRef.current + delta) * scrollHeight / clientHeight;
       }
     }
   };
