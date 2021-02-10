@@ -3,7 +3,7 @@ import combineClassNames, {scopedClassMaker} from '../utils/className';
 import './style.scss';
 
 interface ScrollProps extends HTMLAttributes<HTMLDivElement> {
- className: string
+ className?: string
 }
 
 const sc = scopedClassMaker('apoloUI-scroll');
