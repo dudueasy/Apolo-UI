@@ -3,7 +3,7 @@ import combineClassNames, {scopedClassMaker} from '../utils/className';
 import './style.scss';
 
 interface ScrollProps extends HTMLAttributes<HTMLDivElement> {
- className?: string
+  className?: string
 }
 
 const sc = scopedClassMaker('apoloUI-scroll');
@@ -12,25 +12,25 @@ const Scroll: React.FC<ScrollProps> = (props) => {
   // const offsetDistance = scrollbarWidth();  // 该函数在 mac 上表现异常, 所以不使用
   const {children, className, ...rest} = props;
 
+  const [barVisible, setBarVisible] = useState(false);
+  const timerIdRef = useRef<number>()
+
   const offsetDistance = -16;
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [barHeight, setBarHeight] = useState(0);
   const [barTop, setBarTop] = useState(0);
-  useEffect(() => {
-    console.log('barTop: ', barTop);
-  }, [barTop]);
 
   const _setBarTop = useCallback((_barTop: number) => {
       const scrollHeight = containerRef?.current?.scrollHeight;
       const clientHeight = containerRef?.current?.clientHeight;
 
-      if(scrollHeight && clientHeight ) {
+      if (scrollHeight && clientHeight) {
         const maxBarTop = (scrollHeight - clientHeight) * clientHeight / scrollHeight;
         if (_barTop < 0) {
           return;
         }
-        if ( _barTop > maxBarTop) {
+        if (_barTop > maxBarTop) {
           return;
         }
         setBarTop(_barTop);
@@ -45,14 +45,22 @@ const Scroll: React.FC<ScrollProps> = (props) => {
     if (scrollHeight && clientHeight) setBarHeight(clientHeight * clientHeight / scrollHeight);
   }, []);
 
-  // const
   const onScroll: UIEventHandler<HTMLDivElement> = (e) => {
+    setBarVisible(true);
     const current = containerRef.current!;
     const scrollHeight = current.scrollHeight;
     const clientHeight = current.clientHeight;
     const scrollTop = current.scrollTop;
 
     _setBarTop(scrollTop * barHeight / clientHeight);
+
+    // debounce
+    if (timerIdRef.current && barVisible) {
+      clearTimeout(timerIdRef.current)
+    }
+    timerIdRef.current = setTimeout(() => {
+      setBarVisible(false);
+    }, 1000)
   };
 
   const draggingRef = useRef(false);
@@ -82,7 +90,7 @@ const Scroll: React.FC<ScrollProps> = (props) => {
         containerRef.current.scrollTop = (initialBarTopRef.current + delta) * scrollHeight / clientHeight;
       }
     }
-  },[_setBarTop])
+  }, [_setBarTop])
 
   const onMouseUp = (e: MouseEvent) => {
     draggingRef.current = false;
@@ -120,18 +128,19 @@ const Scroll: React.FC<ScrollProps> = (props) => {
       >
         {children}
       </div>
-      <div className={sc('track')}>
-        {/*滚动条本体*/}
-        <div
-          className={sc('scrollBar')}
-          style={{
-            height: barHeight,
-            transform: `translateY(${barTop}px)`
-          }}
-          onMouseDown={onMouseDownBar}
-
-        />
-      </div>
+      {
+        barVisible && <div className={sc('track')}>
+          {/*滚动条本体*/}
+          <div
+            className={sc('scrollBar')}
+            style={{
+              height: barHeight,
+              transform: `translateY(${barTop}px)`
+            }}
+            onMouseDown={onMouseDownBar}
+          />
+        </div>
+      }
     </div>
   );
 };
