@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './dialog.scss';
 import {Icon} from '../index';
 import {scopedClassMaker} from '../utils/className';
+import Button from '../button/button';
 
 export class DialogProps {
   visible?: boolean = false;
@@ -114,7 +115,7 @@ const alert = (props: DialogFuncProps) => {
     title,
     content,
     buttons: [
-      <button onClick={() => onClose()}>ok</button>
+      <Button onClick={() => onClose()}>ok</Button>
     ]
   });
 
@@ -132,19 +133,19 @@ const confirm = (props: DialogFuncProps) => {
     title,
     content,
     buttons: [
-      <button onClick={() => {
+      <Button onClick={() => {
         onClose();
         if (onCancel) onCancel();
       }}>
         cancel
-      </button>
+      </Button>
       ,
-      <button onClick={() => {
+      <Button onClick={() => {
         onClose();
         if (onOk) onOk();
       }}>
         ok
-      </button>,
+      </Button>,
     ]
   });
 
