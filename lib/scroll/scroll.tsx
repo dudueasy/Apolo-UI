@@ -15,7 +15,6 @@ const Scroll: React.FC<ScrollProps> = (props) => {
   const [barVisible, setBarVisible] = useState(false);
   const timerIdRef = useRef<number>()
 
-  const offsetDistance = -16;
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [barHeight, setBarHeight] = useState(0);
@@ -121,8 +120,6 @@ const Scroll: React.FC<ScrollProps> = (props) => {
     >
       <div
         className={sc('inner')}
-        // style={{right: offsetDistance, bottom: offsetDistance}}
-        style={{right: offsetDistance}}
         onScroll={onScroll}
         ref={containerRef}
       >
