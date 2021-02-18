@@ -1,4 +1,13 @@
-import React, {HTMLAttributes, UIEventHandler, useCallback, useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {
+  HTMLAttributes,
+  TouchEventHandler,
+  UIEventHandler,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState
+} from 'react';
 import combineClassNames, {scopedClassMaker} from '../utils/className';
 import './style.scss';
 
@@ -19,6 +28,7 @@ const Scroll: React.FC<ScrollProps> = (props) => {
 
   const [barHeight, setBarHeight] = useState(0);
   const [barTop, setBarTop] = useState(0);
+  const [translateY, setTranslateY] = useState(0);
 
   const _setBarTop = useCallback((_barTop: number) => {
       const scrollHeight = containerRef?.current?.scrollHeight;
@@ -59,13 +69,16 @@ const Scroll: React.FC<ScrollProps> = (props) => {
     }
     timerIdRef.current = setTimeout(() => {
       setBarVisible(false);
-    }, 1000)
+    }, 300)
   };
 
   const draggingRef = useRef(false);
   const initialBarTopRef = useRef(0);
   const initialClientYRef = useRef(0);
-
+  const touchStartRef = useRef(0);
+  const touchCurrentRef = useRef(0);
+  const moveCountRef = useRef(0);
+  const touchFromTop = useRef(false);
 
   const onMouseDownBar = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     draggingRef.current = true;
@@ -113,6 +126,51 @@ const Scroll: React.FC<ScrollProps> = (props) => {
     };
   }, [onMouseMove]);
 
+  const onTouchStart: TouchEventHandler = (e) => {
+    if (containerRef?.current?.scrollTop != 0) {
+      return
+    } else {
+      touchStartRef.current = e.touches[0].clientY;
+      moveCountRef.current = 0;
+
+      touchFromTop.current = true;
+    }
+  };
+  const onTouchMove: TouchEventHandler = (e) => {
+    moveCountRef.current += 1;
+    const delta = e.touches[0].clientY - touchStartRef?.current;
+
+    // 如果时第一次触摸，并且是往上拉
+    if (moveCountRef.current === 1 && delta < 0) {
+      touchFromTop.current = false;
+      return
+    }
+
+    // 对于任意一次触摸， 不是从顶部开始
+    if(!touchFromTop.current){
+      return
+    }
+
+    //  当 delta > 0 ,  表示用户在下拉
+    if (delta > 0) {
+      // 只有当内容处于最顶端时， 才下拉内容区
+      if (containerRef?.current?.scrollTop === 0){
+        setTranslateY( translateY + delta);
+      }
+    }
+    //  当 delta < 0 ,  表示用户在上拉
+    if (delta <= 0 && translateY > 0) {
+      setTranslateY(0)
+    }
+
+    // 更新下一次的起点位置 buggy
+    touchStartRef.current = e.touches[0].clientY
+  };
+
+  const onTouchEnd: TouchEventHandler = (e) => {
+    setTranslateY(0);
+  };
+
   return (
     <div
       className={combineClassNames(sc(), className)}
@@ -122,6 +180,10 @@ const Scroll: React.FC<ScrollProps> = (props) => {
         className={sc('inner')}
         onScroll={onScroll}
         ref={containerRef}
+        style={{transform: `translateY(${translateY}px)`}}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchMove={onTouchMove}
       >
         {children}
       </div>
