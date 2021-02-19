@@ -13,6 +13,7 @@ import './style.scss';
 
 interface ScrollProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
+  onPull?: () => void
 }
 
 const sc = scopedClassMaker('apoloUI-scroll');
@@ -76,9 +77,8 @@ const Scroll: React.FC<ScrollProps> = (props) => {
   const initialBarTopRef = useRef(0);
   const initialClientYRef = useRef(0);
   const touchStartRef = useRef(0);
-  const touchCurrentRef = useRef(0);
   const moveCountRef = useRef(0);
-  const touchFromTop = useRef(false);
+  const pullingRef = useRef(false);
 
   const onMouseDownBar = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     draggingRef.current = true;
@@ -132,8 +132,7 @@ const Scroll: React.FC<ScrollProps> = (props) => {
     } else {
       touchStartRef.current = e.touches[0].clientY;
       moveCountRef.current = 0;
-
-      touchFromTop.current = true;
+      pullingRef.current = true;
     }
   };
   const onTouchMove: TouchEventHandler = (e) => {
@@ -142,33 +141,24 @@ const Scroll: React.FC<ScrollProps> = (props) => {
 
     // 如果时第一次触摸，并且是往上拉
     if (moveCountRef.current === 1 && delta < 0) {
-      touchFromTop.current = false;
+      pullingRef.current = false;
       return
     }
 
     // 对于任意一次触摸， 不是从顶部开始
-    if(!touchFromTop.current){
+    if (!pullingRef.current) {
       return
     }
-
-    //  当 delta > 0 ,  表示用户在下拉
-    if (delta > 0) {
-      // 只有当内容处于最顶端时， 才下拉内容区
-      if (containerRef?.current?.scrollTop === 0){
-        setTranslateY( translateY + delta);
-      }
-    }
-    //  当 delta < 0 ,  表示用户在上拉
-    if (delta <= 0 && translateY > 0) {
-      setTranslateY(0)
-    }
-
-    // 更新下一次的起点位置 buggy
+    setTranslateY(translateY + delta);
     touchStartRef.current = e.touches[0].clientY
   };
 
   const onTouchEnd: TouchEventHandler = (e) => {
-    setTranslateY(0);
+    if (pullingRef.current) {
+      setTranslateY(0);
+      props.onPull && props.onPull()
+      pullingRef.current = false;
+    }
   };
 
   return (
@@ -200,6 +190,12 @@ const Scroll: React.FC<ScrollProps> = (props) => {
           />
         </div>
       }
+      <div className="apoloUI-scroll-pulling" style={{height: translateY}}>
+        {translateY >= 100 ?
+          <span className="apoloUI-scroll-pulling-text">释放手指即可更新</span> :
+          <span className="apoloUI-scroll-pulling-icon">↓</span>
+        }
+      </div>
     </div>
   );
 };
