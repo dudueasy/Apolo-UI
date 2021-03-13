@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Icon Component should render properly 1`] = `
+exports[`Icon FormExample should render properly 1`] = `
 <svg
   className="apoloUI-icon"
 >
