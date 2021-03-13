@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://material-ui.com/" rel="noopener" target="_blank">
+  <a href="#" rel="noopener" target="_blank">
     <img width="150" src="https://raw.githubusercontent.com/dudueasy/Apolo-UI/master/logo.png" alt="Apolo-UI logo"> 
   </a>
 </p>
@@ -8,7 +8,6 @@
 [![CircleCI](https://circleci.com/gh/dudueasy/Apolo-UI/tree/master.svg?style=svg)](https://circleci.com/gh/dudueasy/Apolo-UI/tree/master)
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/dudueasy/Apolo-UI/blob/master/LICENSE)
-[![npm latest package](https://img.shields.io/npm/v/@material-ui/core/latest.svg)](https://www.npmjs.com/package/@material-ui/core)
  
 
 # 分支 
