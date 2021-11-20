@@ -11,6 +11,12 @@ module.exports = {
   ],
   rules: {
     "react-hooks/rules-of-hooks": 2,
-    'react-hooks/exhaustive-deps': 2
-  }
+    'react-hooks/exhaustive-deps': 2,
+    '@typescript-eslint/no-var-requires': 0,
+  },
+  env: {
+    "browser": true,
+    "amd": true,
+    "node": true
+  },
 };
