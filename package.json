@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "generate-types": "tsc -d --emitrationOnly --allowJs false",
+    "generate-types": "tsc -d --emitDeclarationOnly --allowJs false",
     "build": "rm -rf dist/* && webpack --config webpack.config.prod.js && yarn generate-types",
     "start": "webpack-dev-server --config webpack.config.dev.js",
     "doc": "rm -rf doc/* && webpack --config webpack.config.doc.js",
