@@ -1,7 +1,7 @@
 import React from 'react';
-import Demo from "../../DemoWithCode";
+import Demo from "../../../DemoWithCode";
 import {RadiosGroupExample} from "./radioGroup.example";
-import {ExampleWrapper} from "../../ExampleWrappers";
+import {ExampleWrapper} from "../../../ExampleWrappers";
 
 const RadioGroupExampleWithCode: React.FC = () => <>
   <h3>Example for RadioGroup</h3>

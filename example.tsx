@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, NavLink, Route, Switch} from 'react-router-dom';
-import {Content, Footer, Header, Layout, Sider} from './lib/layout/layout';
+import {Content, Footer, Header, Layout, Sider} from './lib/components/layout/layout';
 import style from './example.scss';
 import logo from './logo.png';
-import IconDemo from './lib/icon/iconExampleWithCode';
-import DialogDemo from './lib/dialog/dialogExampleWithCode';
-import LayoutDemo from './lib/layout/layoutExampleWithCode';
-import FormDemo from './lib/form/formExampleWithCode';
-import ScrollExample from './lib/scroll/example/scrollExampleWithCode';
-import RadiosGroupExample from "./lib/radioGroup/example/radioGroupExampleWithCode";
+import IconDemo from './lib/components/icon/iconExampleWithCode';
+import DialogDemo from './lib/components/dialog/dialogExampleWithCode';
+import LayoutDemo from './lib/components/layout/layoutExampleWithCode';
+import FormDemo from './lib/components/form/formExampleWithCode';
+import ScrollExample from './lib/components/scroll/example/scrollExampleWithCode';
+import RadiosGroupExample from "./lib/components/radioGroup/example/radioGroupExampleWithCode";
 
 interface routerMatch {
   [key: string]: any

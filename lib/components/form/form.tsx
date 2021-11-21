@@ -1,8 +1,8 @@
 import React, {ReactFragment} from 'react';
 import Input from '../input/input';
-import {scopedClassMaker} from '../utils/className';
+import {scopedClassMaker} from '../../utils/className';
 import './form.global.scss';
-import {EnumApoloUIComponentType} from "../typing";
+import {EnumApoloUIComponentType} from "../../typing";
 
 export type FormValue = { [name: string]: string };
 export type FormErrors = { [K: string]: string[] };

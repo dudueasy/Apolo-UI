@@ -8,9 +8,9 @@ import React, {
   useRef,
   useState
 } from 'react';
-import combineClassNames, {scopedClassMaker} from '../utils/className';
+import combineClassNames, {scopedClassMaker} from '../../utils/className';
 import './style.global.scss';
-import {EnumApoloUIComponentType} from "../typing";
+import {EnumApoloUIComponentType} from "../../typing";
 
 interface ScrollProps extends HTMLAttributes<HTMLDivElement> {
   className?: string

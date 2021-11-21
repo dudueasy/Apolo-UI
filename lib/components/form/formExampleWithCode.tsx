@@ -1,6 +1,6 @@
 import React from 'react';
-import {ExampleWrapper} from '../ExampleWrappers';
-import Demo from '../DemoWithCode';
+import {ExampleWrapper} from '../../ExampleWrappers';
+import Demo from '../../DemoWithCode';
 import Button from '../button/button';
 import FormExample from './form.example';
 

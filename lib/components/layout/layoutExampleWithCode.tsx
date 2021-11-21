@@ -1,5 +1,5 @@
 import React from 'react';
-import Demo from '../DemoWithCode';
+import Demo from '../../DemoWithCode';
 import LayoutExample from './example/layout.example';
 import LayoutWithSider from './example/layoutWithSider.example';
 import LayoutNestedLayout from './example/layoutNestedLayout';

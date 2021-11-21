@@ -1,8 +1,8 @@
 import React, {Fragment, useState} from 'react';
 import './style.global.scss';
-import combineClassNames, {scopedClassMaker} from "../utils/className";
+import combineClassNames, {scopedClassMaker} from "../../utils/className";
 import {CSSProperties} from 'styled-components';
-import {EnumApoloUIComponentType} from "../typing";
+import {EnumApoloUIComponentType} from "../../typing";
 
 
 export type RadioGroupProps = {

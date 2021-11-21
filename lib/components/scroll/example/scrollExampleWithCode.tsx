@@ -1,6 +1,6 @@
 import React from "react";
-import Demo from "../../DemoWithCode";
-import {ExampleWrapper} from "../../ExampleWrappers";
+import Demo from "../../../DemoWithCode";
+import {ExampleWrapper} from "../../../ExampleWrappers";
 import ScrollExample from "./scroll.example";
 
 const ScrollExampleWithCode: React.FC = () => {

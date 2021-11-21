@@ -1,10 +1,10 @@
 import React, {ReactElement, ReactNode} from 'react';
 import ReactDOM from 'react-dom';
 import './dialog.global.scss';
-import {Icon} from '../index';
-import {scopedClassMaker} from '../utils/className';
+import {Icon} from '../../index';
+import {scopedClassMaker} from '../../utils/className';
 import Button from '../button/button';
-import {EnumApoloUIComponentType} from "../typing";
+import {EnumApoloUIComponentType} from "../../typing";
 
 export class DialogProps {
   visible?: boolean = false;

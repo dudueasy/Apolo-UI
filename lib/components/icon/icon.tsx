@@ -3,8 +3,8 @@ import React from 'react';
 import '../utils/importAllSvg';
 // 引入样式文件
 import './icon.global.scss';
-import combineClassNames from '../utils/className';
-import {EnumApoloUIComponentType} from "../typing";
+import combineClassNames from '../../utils/className';
+import {EnumApoloUIComponentType} from "../../typing";
 
 
 interface Props extends React.SVGAttributes<SVGElement> {

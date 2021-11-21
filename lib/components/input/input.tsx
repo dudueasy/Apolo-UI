@@ -1,7 +1,7 @@
 import React from 'react';
-import combineClassNames from '../utils/className';
+import combineClassNames from '../../utils/className';
 import './input.global.scss';
-import {EnumApoloUIComponentType} from "../typing";
+import {EnumApoloUIComponentType} from "../../typing";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}
 

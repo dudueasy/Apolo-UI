@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import HighLight, {defaultProps} from 'prism-react-renderer';
 import styled from 'styled-components';
-import Button from './button/button';
+import Button from './components/button/button';
 
 interface Props {code: string}
 

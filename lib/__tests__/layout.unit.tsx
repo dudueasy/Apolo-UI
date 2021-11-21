@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Layout from '../layout/layout';
+import Layout from '../components/layout/layout';
 import {shallow} from 'enzyme';
 
 

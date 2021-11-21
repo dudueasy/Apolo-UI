@@ -1,6 +1,6 @@
 import React from 'react';
-import combineClassNames, {scopedClassMaker} from '../utils/className';
-import {EnumApoloUIComponentType} from "../typing";
+import combineClassNames, {scopedClassMaker} from '../../utils/className';
+import {EnumApoloUIComponentType} from "../../typing";
 
 const sc = scopedClassMaker(EnumApoloUIComponentType.Layout);
 
