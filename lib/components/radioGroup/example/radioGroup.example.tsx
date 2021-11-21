@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {RadioGroupProps} from "../index";
 import {RadioGroup} from "../index";
 import style from './style.scss';
@@ -32,6 +32,12 @@ export const RadiosGroupExample: React.FC = (props) => {
   }
 
 
+  const [controlledValue, setControlledValue] = useState()
+  const onRadioChange = (value: any)=> {
+    setControlledValue(value)
+  }
+
+
   return (<div>
       <div style={{marginBottom: 24}}>
         <h3>RadioGroup</h3>
@@ -40,12 +46,22 @@ export const RadiosGroupExample: React.FC = (props) => {
           onChange={onChange}
         />
       </div>
-      <div>
+      <div style={{marginBottom: 24}}>
         <h3>RadioGroup type=button</h3>
         <RadioGroup
           type='button'
           options={options}
           onChange={onChange}
+          className={style.radioButtonGroup}
+        />
+      </div>
+      <div>
+        <h3>controlled RadioGroup type=button</h3>
+        <RadioGroup
+          type='button'
+          options={options}
+          value={controlledValue}
+          onChange={onRadioChange}
           className={style.radioButtonGroup}
         />
       </div>

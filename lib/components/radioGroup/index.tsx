@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './style.global.scss';
 import combineClassNames, {scopedClassMaker} from "../../utils/className";
 import {EnumApoloUIComponentType} from "../../typing";
 
 
+type RadioGroupOption = { label: string, key: string, value: React.ReactText };
 export type RadioGroupProps = {
-  options: { label: string, key: string, value: React.ReactText }[],
+  options: RadioGroupOption[],
   onChange?: (value: React.ReactText) => void,
   initialValue?: React.ReactText,
   value?: React.ReactText
@@ -30,6 +31,16 @@ export const RadioGroup: React.FC<RadioGroupProps> = (props) => {
 
   const [internalValue, setInternalValue] = useState(initialValue || value)
 
+  const onRadioChange =  (item: RadioGroupOption) => {
+    if(!('value' in props)){
+      setInternalValue(item.value)
+    }
+    onChange?.(item.value)
+  }
+
+  useEffect(() => {
+    setInternalValue(value)
+  },[value])
 
   return <div className={combineClassNames(sc(), className)}>{
     options.map((item) => {
@@ -44,20 +55,14 @@ export const RadioGroup: React.FC<RadioGroupProps> = (props) => {
         <button
           className={classNames}
           key={item.key}
-          onClick={() => {
-            setInternalValue(item.value)
-            onChange?.(item.value)
-          }}
+          onClick={()=> onRadioChange(item) }
         >{item.label}<span/>
         </button> :
         <label key={item.key} className={classNames}>
           <span>{item.label}</span>
           <input
             type={'radio'}
-            onClick={() => {
-              setInternalValue(item.value)
-              onChange?.(item.value)
-            }}
+            onClick={()=> onRadioChange(item) }
             name={EnumApoloUIComponentType.RadioGroup}
           />
         </label>
