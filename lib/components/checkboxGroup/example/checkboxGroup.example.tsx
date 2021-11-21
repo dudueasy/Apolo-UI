@@ -46,7 +46,6 @@ export const CheckboxGroupExample: React.FC = (props) => {
           options={options}
           onChange={onChange}
           className={style.checkboxButtonGroup}
-          initialValue={['text', 'page']}
         />
       </div>
     </div>

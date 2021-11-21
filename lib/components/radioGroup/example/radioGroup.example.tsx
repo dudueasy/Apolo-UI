@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import {RadioGroupProps} from "../index";
 import {RadioGroup} from "../index";
 import style from './style.scss';
 
-export const RadiosGroupExample: React.FC = (props) => {
+export const RadiosGroupExample: React.FC = () => {
   const options: RadioGroupProps["options"] = [
     {
       label: '全部',
@@ -31,13 +31,6 @@ export const RadiosGroupExample: React.FC = (props) => {
     console.log(`value: `, value);
   }
 
-
-  const [controlledValue, setControlledValue] = useState()
-  const onRadioChange = (value: any)=> {
-    setControlledValue(value)
-  }
-
-
   return (<div>
       <div style={{marginBottom: 24}}>
         <h3>RadioGroup</h3>
@@ -52,16 +45,6 @@ export const RadiosGroupExample: React.FC = (props) => {
           type='button'
           options={options}
           onChange={onChange}
-          className={style.radioButtonGroup}
-        />
-      </div>
-      <div>
-        <h3>controlled RadioGroup type=button</h3>
-        <RadioGroup
-          type='button'
-          options={options}
-          value={controlledValue}
-          onChange={onRadioChange}
           className={style.radioButtonGroup}
         />
       </div>

@@ -5,7 +5,7 @@ import { CheckboxGroupExample } from './checkboxGroup.example';
 import {CheckboxGroupExampleControlled} from "./checkboxGroup.controlledExample";
 
 const CheckboxGroupExampleWithCode: React.FC = () => <>
-  <h3>Example for RadioGroup</h3>
+  <h3>Example for CheckboxGroup</h3>
   <Demo code={require('!!raw-loader!./checkboxGroup.example').default}>
     <ExampleWrapper>
       <CheckboxGroupExample/>

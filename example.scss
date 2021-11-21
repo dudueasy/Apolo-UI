@@ -46,16 +46,18 @@ a {
   min-width: 100vw;
 
   .logo {
-    display: flex;
-    align-items: center;
+    > a{
+      display: flex;
+      align-items: center;
 
-    > img {
-      margin-right: 8px;
-    }
+      > img {
+        margin-right: 8px;
+      }
 
-    > span {
-      font-weight: lighter;
-      font-size: 20px;
+      > span {
+        font-weight: lighter;
+        font-size: 20px;
+      }
     }
   }
 }

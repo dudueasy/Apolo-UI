@@ -20,8 +20,10 @@ const Home = () => (
   <Layout className={style.sitePage}>
     <Header className={style.siteHeader}>
       <div className={style.logo}>
-        <img src={logo} alt="" height={48}/>
-        <span> Apolo-UI </span>
+        <a href="https://github.com/dudueasy/Apolo-UI">
+          <img src={logo} alt="" height={48}/>
+          <span> Apolo-UI </span>
+        </a>
       </div>
     </Header>
     <Layout>
