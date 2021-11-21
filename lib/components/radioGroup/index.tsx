@@ -39,7 +39,9 @@ export const RadioGroup: React.FC<RadioGroupProps> = (props) => {
   }
 
   useEffect(() => {
-    setInternalValue(value)
+    if(value){
+      setInternalValue(value)
+    }
   },[value])
 
   return <div className={combineClassNames(sc(), className)}>{
