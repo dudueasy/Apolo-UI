@@ -9,7 +9,6 @@ import DialogDemo from './lib/dialog/dialogExampleWithCode';
 import LayoutDemo from './lib/layout/layoutExampleWithCode';
 import FormDemo from './lib/form/formExampleWithCode';
 import ScrollExample from './lib/scroll/scroll.example';
-import Example from "./lib/radio/radio.example";
 import {RadiosGroupExample} from "./lib/radioGroup/example/radioGroup.example";
 
 interface routerMatch {
@@ -34,7 +33,6 @@ const Home = () => (
           <li><NavLink to="/form"> Form </NavLink></li>
           <li><NavLink to="/scroll"> Scroll </NavLink></li>
           <li><NavLink to="/radioGroup"> radio </NavLink></li>
-          <li><NavLink to="/radiosAndCheckbox"> radiosAndCheckbox </NavLink></li>
         </ul>
       </Sider>
       <Layout>
@@ -45,8 +43,7 @@ const Home = () => (
             <Route path="/layout" component={LayoutDemo}/>
             <Route path="/form" component={FormDemo}/>
             <Route path="/scroll" component={ScrollExample}/>
-            <Route path="/radioGroup" component={Example}/>
-            <Route path="/radiosAndCheckbox" component={RadiosGroupExample}/>
+            <Route path="/radioGroup" component={RadiosGroupExample}/>
           </Switch>
         </Content>
       </Layout>

@@ -42,14 +42,12 @@ module.exports = {
                 loader: 'css-loader',
                 options: {
                   modules: true,
-
                   localIdentName: "[name]_[hash:base64:5]",
                 }
               },
               "sass-loader"
             ]
           }
-
         ],
       },
       {test: /\.(png|jpg|gif)$/, loader: 'file-loader'}

@@ -21,7 +21,7 @@ const RadioGroupExample: React.FC = () => {
 }
 
 
-const Example: React.FC = () => {
+const RadioExample: React.FC = () => {
   return (
     <div>
       <div>
@@ -31,4 +31,4 @@ const Example: React.FC = () => {
     </div>)
 }
 
-export default Example
+export default RadioExample
