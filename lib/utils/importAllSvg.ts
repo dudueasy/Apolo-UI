@@ -9,7 +9,7 @@
 
 
 // 需要注意的是这个函数由于引用了 webpack api, 需要在编译时调用, 因此并不能接收参数
-function importAllSvg(): void {
+export function importAllSvg(): void {
 
   const fn = (requireContext: __WebpackModuleApi.RequireContext) => requireContext.keys()
     .forEach(id => {
@@ -17,7 +17,7 @@ function importAllSvg(): void {
     });
 
 
-  fn(require.context('../icon/icon_svg/', false, /\.svg$/));
+  fn(require.context('../components/icon/icon_svg/', false, /\.svg$/));
   // fn(require.context(path, false, filenameRegex));
 }
 

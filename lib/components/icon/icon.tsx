@@ -1,6 +1,6 @@
 import React from 'react';
 // 引入 icons 目录下的所有 svg
-import '../utils/importAllSvg';
+import '../../utils/importAllSvg';
 // 引入样式文件
 import './icon.global.scss';
 import combineClassNames from '../../utils/className';
