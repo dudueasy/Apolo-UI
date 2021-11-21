@@ -1,14 +1,12 @@
-import React, {Fragment, useState} from 'react';
+import React, {useState} from 'react';
 import './style.global.scss';
 import combineClassNames, {scopedClassMaker} from "../../utils/className";
-import {CSSProperties} from 'styled-components';
 import {EnumApoloUIComponentType} from "../../typing";
 
 
 export type RadioGroupProps = {
   options: { label: string, key: string, value: React.ReactText }[],
-  onChange: (value: React.ReactText) => void,
-  buttonStyle?: CSSProperties,
+  onChange?: (value: React.ReactText) => void,
   initialValue?: React.ReactText,
   value?: React.ReactText
   type?: 'button'
@@ -22,13 +20,12 @@ export const RadioGroup: React.FC<RadioGroupProps> = (props) => {
   const onChange = props.onChange
   const initialValue = props.initialValue
   const value = props.value
-  const buttonStyle = props.buttonStyle
   const className = props.className
   const typeIsButton = props.type === 'button'
 
 
   if (options.length <= 0) {
-    throw new Error('invalid parameter options')
+    throw new Error('component RadioGroup received invalid parameter options')
   }
 
   const [internalValue, setInternalValue] = useState(initialValue || value)
@@ -42,28 +39,26 @@ export const RadioGroup: React.FC<RadioGroupProps> = (props) => {
 
       // 如果 option checked, 那么添加一个 className
       const classNames = currentOptionIsChecked ? combineClassNames(optionTypeClassname, checkedOptionClassName) : optionTypeClassname
-      console.log(`classNames : `, classNames );
 
       return typeIsButton ?
         <button
-          style={buttonStyle}
           className={classNames}
           key={item.key}
           onClick={() => {
             setInternalValue(item.value)
-            onChange(item.value)
+            onChange?.(item.value)
           }}
         >{item.label}<span/>
         </button> :
         <label key={item.key} className={classNames}>
           <span>{item.label}</span>
-          <input type={'radio'}
-                 style={buttonStyle}
-                 onClick={() => {
-                   setInternalValue(item.value)
-                   onChange(item.value)
-                 }}
-                 name={EnumApoloUIComponentType.RadioGroup}
+          <input
+            type={'radio'}
+            onClick={() => {
+              setInternalValue(item.value)
+              onChange?.(item.value)
+            }}
+            name={EnumApoloUIComponentType.RadioGroup}
           />
         </label>
     })

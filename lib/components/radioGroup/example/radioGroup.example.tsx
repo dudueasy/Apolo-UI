@@ -4,7 +4,7 @@ import {RadioGroup} from "../index";
 import style from './style.scss';
 
 export const RadiosGroupExample: React.FC = (props) => {
-  const radioButtonOptions: RadioGroupProps["options"] = [
+  const options: RadioGroupProps["options"] = [
     {
       label: '全部',
       key: 'all',
@@ -27,26 +27,25 @@ export const RadiosGroupExample: React.FC = (props) => {
     }
   ]
 
-  const onRadioButtonsChange = (value: any) => {
-    console.log(`radioButtons value: `, value);
+  const onChange = (value: any) => {
+    console.log(`value: `, value);
   }
 
-  console.log(`className: `, style.radioButtonGroup);
 
   return (<div>
       <div style={{marginBottom: 24}}>
         <h3>RadioGroup</h3>
         <RadioGroup
-          options={radioButtonOptions}
-          onChange={onRadioButtonsChange}
+          options={options}
+          onChange={onChange}
         />
       </div>
       <div>
         <h3>RadioGroup type=button</h3>
         <RadioGroup
           type='button'
-          options={radioButtonOptions}
-          onChange={onRadioButtonsChange}
+          options={options}
+          onChange={onChange}
           className={style.radioButtonGroup}
         />
       </div>
