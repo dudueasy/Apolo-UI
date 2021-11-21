@@ -1,0 +1,32 @@
+.checkboxButtonGroup{
+  :global {
+    .apoloUI-checkboxGroup-options-button-checked {
+      border: 1px dashed #aaa;
+      position: relative;
+      overflow: hidden;
+
+      & > span {
+        content: "";
+        position: absolute;
+        bottom: -13px;
+        right: -7px;
+        width: 16px;
+        height: 32px;
+        background: #aaa;
+        transform: rotate(42deg);
+
+        &::after {
+          content: "";
+          border-bottom: 1px solid white;
+          border-right: 1px solid white;
+          position: absolute;
+          top: 13px;
+          left: 2px;
+          width: 3px;
+          height: 7px;
+          transform: rotate(-3deg);
+        }
+      }
+    }
+  }
+}

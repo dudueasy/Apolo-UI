@@ -1,0 +1,32 @@
+
+.apoloUI-checkboxGroup-option {
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  & > span {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+.apoloUI-checkboxGroup-options-button {
+  padding: 4px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+  background: white;
+
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    color: #40a9ff;
+  }
+
+  &-checked {
+    color: #40a9ff;
+    border-color: #40a9ff;
+    box-shadow: 0px 0px 4px #40a9ff;
+  }
+}
