@@ -1,6 +1,7 @@
 import React from 'react';
 import combineClassNames, {scopedClassMaker} from '../utils/className';
-import './button.scss';
+import './button.global.scss';
+import {EnumApoloUIComponentType} from "../typing";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   level?: 'important' | 'danger' | 'normal'
@@ -12,7 +13,7 @@ const Button: React.FC<Props> = (props) => {
   return (
     <button
       className={
-        combineClassNames('apoloUI-button', `apoloUI-button-${level}`, className)
+        combineClassNames(EnumApoloUIComponentType.Button, `${EnumApoloUIComponentType.Button}-button-${level}`, className)
       }
       {...rest}
     >{children}

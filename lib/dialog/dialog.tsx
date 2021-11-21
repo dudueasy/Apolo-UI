@@ -1,9 +1,10 @@
 import React, {ReactElement, ReactNode} from 'react';
 import ReactDOM from 'react-dom';
-import './dialog.scss';
+import './dialog.global.scss';
 import {Icon} from '../index';
 import {scopedClassMaker} from '../utils/className';
 import Button from '../button/button';
+import {EnumApoloUIComponentType} from "../typing";
 
 export class DialogProps {
   visible?: boolean = false;
@@ -23,7 +24,7 @@ export interface DialogFunc {
   (props: DialogFuncProps): () => void
 }
 
-const scopedClassName = scopedClassMaker('apoloUI-dialog');
+const scopedClassName = scopedClassMaker(EnumApoloUIComponentType.Dialog);
 const sc = scopedClassName;
 
 type DialogComponent = React.FC<DialogProps> & {

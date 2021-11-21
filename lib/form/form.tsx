@@ -1,7 +1,8 @@
 import React, {ReactFragment} from 'react';
 import Input from '../input/input';
 import {scopedClassMaker} from '../utils/className';
-import './form.scss';
+import './form.global.scss';
+import {EnumApoloUIComponentType} from "../typing";
 
 export type FormValue = { [name: string]: string };
 export type FormErrors = { [K: string]: string[] };
@@ -32,7 +33,7 @@ const Form: React.FC<FormProps> = (props) => {
     props.onChange(newFormValue);
   };
 
-  const sc = scopedClassMaker('apoloUI-form');
+  const sc = scopedClassMaker(EnumApoloUIComponentType.Form);
 
   const transformErrors = (message: string) => {
     enum internalTransformErrorEnum {

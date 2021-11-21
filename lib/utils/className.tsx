@@ -6,6 +6,7 @@ export interface SuffixToggles {
   [k: string]: boolean
 }
 
+//
 const scopedClassMaker = (prefix: string) =>
   (suffix?: string | SuffixToggles, options?: ClassOptions) => {
     return suffix ? Object

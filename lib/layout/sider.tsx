@@ -1,7 +1,8 @@
 import React from 'react';
 import combineClassNames, {scopedClassMaker} from '../utils/className';
+import {EnumApoloUIComponentType} from "../typing";
 
-const sc = scopedClassMaker('apoloUI-layout');
+const sc = scopedClassMaker(EnumApoloUIComponentType.Layout);
 
 interface LayoutSiderProps extends React.HTMLAttributes<HTMLElement> {}
 

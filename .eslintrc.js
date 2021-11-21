@@ -13,6 +13,7 @@ module.exports = {
     "react-hooks/rules-of-hooks": 2,
     'react-hooks/exhaustive-deps': 2,
     '@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/no-empty-interface': 0
   },
   env: {
     "browser": true,

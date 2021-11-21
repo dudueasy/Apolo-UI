@@ -9,21 +9,22 @@ import React, {
   useState
 } from 'react';
 import combineClassNames, {scopedClassMaker} from '../utils/className';
-import './style.scss';
+import './style.global.scss';
+import {EnumApoloUIComponentType} from "../typing";
 
 interface ScrollProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
   onPull?: () => void
 }
 
-const sc = scopedClassMaker('apoloUI-scroll');
+const sc = scopedClassMaker(EnumApoloUIComponentType.Scroll);
 
 const Scroll: React.FC<ScrollProps> = (props) => {
   // const offsetDistance = scrollbarWidth();  // 该函数在 mac 上表现异常, 所以不使用
   const {children, className, ...rest} = props;
 
   const [barVisible, setBarVisible] = useState(false);
-  const timerIdRef = useRef<number>()
+  const timerIdRef = useRef<any>()
 
   const containerRef = useRef<HTMLDivElement>(null);
 

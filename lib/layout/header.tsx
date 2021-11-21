@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
 import React from 'react';
 import combineClassNames, {scopedClassMaker} from '../utils/className';
+import {EnumApoloUIComponentType} from "../typing";
 
-const sc = scopedClassMaker('apoloUI-layout');
+const sc = scopedClassMaker(EnumApoloUIComponentType.Layout);
 
 interface LayoutHeaderProps extends React.HTMLAttributes<HTMLElement> {}
 

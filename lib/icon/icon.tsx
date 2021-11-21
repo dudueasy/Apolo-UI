@@ -2,8 +2,9 @@ import React from 'react';
 // 引入 icons 目录下的所有 svg
 import '../utils/importAllSvg';
 // 引入样式文件
-import './icon.scss';
+import './icon.global.scss';
 import combineClassNames from '../utils/className';
+import {EnumApoloUIComponentType} from "../typing";
 
 
 interface Props extends React.SVGAttributes<SVGElement> {
@@ -19,7 +20,7 @@ const Icon: React.FC<Props> = (
     ...restProps
   }) => {
   return (
-    <svg className={combineClassNames('apoloUI-icon', className)}
+    <svg className={combineClassNames(EnumApoloUIComponentType.Icon, className)}
          {...restProps}
     >
       <use xlinkHref={`#${name}`}/>

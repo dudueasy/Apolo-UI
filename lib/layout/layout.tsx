@@ -1,17 +1,18 @@
 import React, {ReactElement} from 'react';
 import combineClassNames, {scopedClassMaker} from '../utils/className';
-import './layout.scss';
+import './layout.global.scss';
 import Sider from './sider';
+import {EnumApoloUIComponentType} from "../typing";
 
-const sc = scopedClassMaker('apoloUI-layout');
+const sc = scopedClassMaker(EnumApoloUIComponentType.Layout);
 
 interface LayoutProps extends React.HTMLAttributes<HTMLElement> {
   children?: ReactElement | Array<ReactElement>
 }
 
 const Layout: React.FunctionComponent<LayoutProps> = (props) => {
-  let {className, ...rest} = props;
-  let children = props.children as Array<ReactElement>;
+  const {className, ...rest} = props;
+  const children = props.children as Array<ReactElement>;
 
   // 判断 渲染的 children 中是否有 Sider
   const hasSider = children && children.length &&
