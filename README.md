@@ -1,8 +1,14 @@
-# Apolo-UI: Redefined React UI Components 
+<p align="center">
+  <a href="#" rel="noopener" target="_blank">
+    <img width="150" src="https://raw.githubusercontent.com/dudueasy/Apolo-UI/master/logo.png" alt="Apolo-UI logo"> 
+  </a>
+</p>
+<h1 align="center">Apolo-UI</h1>
+
 [![CircleCI](https://circleci.com/gh/dudueasy/Apolo-UI/tree/master.svg?style=svg)](https://circleci.com/gh/dudueasy/Apolo-UI/tree/master)
-[![npm version](https://badge.fury.io/js/apolo-ui-test.svg)](https://badge.fury.io/js/apolo-ui-test)
+[![npm version](https://badge.fury.io/js/apolo-ui.svg)](https://badge.fury.io/js/apolo-ui)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/dudueasy/Apolo-UI/blob/master/LICENSE)
  
-React UI 组件库
 
 # 分支 
 ### master
@@ -14,7 +20,7 @@ React UI 组件库
 ### deploy
 [发布分支](https://github.com/dudueasy/Apolo-UI/tree/deploy): 用于发布的分支
 
-# 常用命令
+# 使用
 ### 编译项目
 ~~~
 yarn build
@@ -24,37 +30,6 @@ yarn build
 ~~~
 yarn test
 ~~~
-
-### 自动部署
-在项目根目录下执行以下命令 (需要确保当前用户对 deploy.sh 有可执行权限): 
-~~~
-./deploy.sh
-~~~
-
-# 文件结构
-### 源文件
-lib/*
-
-### html 模板
-example.html
-
-### 发布
-dist/lib/
-
-### 测试用例
-\__tests\__/
-
-
-# 工程架构:
-Webpack + React + TypeScript + Jest & Enzyme 单元测试
-
-# 文件结构
-### 源文件
-lib/*
-
-### html 模板
-example.html
-
 
 
 
