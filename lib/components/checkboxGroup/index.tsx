@@ -1,4 +1,4 @@
-import React, {CSSProperties, useState} from 'react';
+import React, {CSSProperties, useCallback, useEffect, useState} from 'react';
 import './style.global.scss'
 import combineClassNames, {scopedClassMaker} from "../../utils/className";
 import {EnumApoloUIComponentType} from "../../typing";
@@ -30,15 +30,28 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = (props) => {
 
   const [internalValue, setInternalValue] = useState(initialValue || value || [])
 
-  const onCheckboxChange = (item: CheckboxGroupOption ) => {
-    const currentValue = internalValue.includes(item.value) ?
+  const getCheckboxValue = useCallback((item: CheckboxGroupOption ) => {
+    return internalValue.includes(item.value) ?
       internalValue.filter(_item => _item !== item.value)
       : internalValue.concat(item.value)
+  },[internalValue])
 
-    setInternalValue(currentValue)
+  const onCheckboxChange = useCallback((item: CheckboxGroupOption ) => {
+    const currentValue = getCheckboxValue(item)
+
+    // if props.value is not passed, update state by itself
+    if(!('value' in props)){
+      setInternalValue(currentValue)
+    }
     onChange?.(currentValue)
-  }
+  }, [getCheckboxValue, onChange, props])
 
+  // if props.value is passed, state is controlled
+  useEffect(() => {
+    if(value){
+      setInternalValue(value)
+    }
+  },[value])
 
   return <div className={combineClassNames(sc(), className)}>{
     options.map((item) => {
