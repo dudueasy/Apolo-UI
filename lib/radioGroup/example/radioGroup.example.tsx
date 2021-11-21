@@ -1,7 +1,6 @@
 import React from "react";
 import {RadioGroupProps} from "../index";
 import {RadioGroup} from "../index";
-// import './style.global.scss'
 import style from './style.scss';
 
 export const RadiosGroupExample: React.FC = (props) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Scroll from './scroll';
+import Scroll from '../scroll';
 
 type Props = Record<string, unknown>;
 

@@ -35,8 +35,9 @@ const DemoWithCode: React.FC<Props> = (props) => {
     <>
       <div>{children} </div>
       <div style={{marginBottom: 16, marginTop: 16}}>
-        <Button onClick={(e) => toggleSourceCodeVisible(!sourceCodeVisible)}
-                level={'important'}
+        <Button
+          onClick={(e) => toggleSourceCodeVisible(!sourceCodeVisible)}
+          level={'important'}
         >显示源码</Button>
       </div>
       {sourceCodeVisible &&

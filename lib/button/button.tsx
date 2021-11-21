@@ -13,7 +13,7 @@ const Button: React.FC<Props> = (props) => {
   return (
     <button
       className={
-        combineClassNames(EnumApoloUIComponentType.Button, `${EnumApoloUIComponentType.Button}-button-${level}`, className)
+        combineClassNames(EnumApoloUIComponentType.Button, `${EnumApoloUIComponentType.Button}-${level}`, className)
       }
       {...rest}
     >{children}

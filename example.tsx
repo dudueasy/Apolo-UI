@@ -8,8 +8,8 @@ import IconDemo from './lib/icon/iconExampleWithCode';
 import DialogDemo from './lib/dialog/dialogExampleWithCode';
 import LayoutDemo from './lib/layout/layoutExampleWithCode';
 import FormDemo from './lib/form/formExampleWithCode';
-import ScrollExample from './lib/scroll/scroll.example';
-import {RadiosGroupExample} from "./lib/radioGroup/example/radioGroup.example";
+import ScrollExample from './lib/scroll/example/scrollExampleWithCode';
+import RadiosGroupExample from "./lib/radioGroup/example/radioGroupExampleWithCode";
 
 interface routerMatch {
   [key: string]: any
@@ -32,7 +32,7 @@ const Home = () => (
           <li><NavLink to="/layout"> Layout </NavLink></li>
           <li><NavLink to="/form"> Form </NavLink></li>
           <li><NavLink to="/scroll"> Scroll </NavLink></li>
-          <li><NavLink to="/radioGroup"> radio </NavLink></li>
+          <li><NavLink to="/radioGroup"> Radio </NavLink></li>
         </ul>
       </Sider>
       <Layout>
