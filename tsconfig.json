@@ -18,7 +18,7 @@
     "removeComments": true,
     "jsx": "react",
     "esModuleInterop": true,
-    "ration": false,
+    "declaration": false,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
