@@ -1,0 +1,60 @@
+
+.apoloUI-radioGroup-option {
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+}
+
+.apoloUI-radioGroup-options-button {
+  padding: 4px 16px;
+  border: 1px solid  rgba(0,0,0,0.4);
+  border-radius: 2px;
+  background: white;
+
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    color: #40a9ff;
+    //border-color: rgba(0,0,255,0.4);
+    //box-shadow: 0px 0px 4px rgb(0 0 255 / 40%);
+  }
+
+  &-checked {
+    color: #40a9ff;
+    border-color: #40a9ff;
+    box-shadow: 0px 0px 4px #40a9ff;
+  }
+}
+
+
+
+//.apoloUI-radioGroup-option-checked {
+//  border-color: #aaa;
+//  position: relative;
+//  overflow: hidden;
+//
+//  & > span {
+//    content: "";
+//    position: absolute;
+//    bottom: -13px;
+//    right: -7px;
+//    width: 16px;
+//    height: 32px;
+//    background: #aaa;
+//    transform: rotate(42deg);
+//
+//    &::after {
+//      content: "";
+//      border-bottom: 1px solid white;
+//      border-right: 1px solid white;
+//      position: absolute;
+//      top: 13px;
+//      left: 2px;
+//      width: 3px;
+//      height: 7px;
+//      transform: rotate(-3deg);
+//    }
+//  }
+//}
